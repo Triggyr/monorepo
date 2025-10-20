@@ -4,8 +4,11 @@
    "description": "Simiplified HTTP module built on axios",
    "main": "dist/index.js",
    "types": "dist/index.d.ts",
+   "files": [
+      "dist"
+   ],
    "scripts": {
-      "prepare": "npm run clean && npm run build",
+      "postinstall": "pnpm run build",
       "build": "tsc -p tsconfig.json",
       "clean": "rm -rf dist",
       "lint": "eslint src",
