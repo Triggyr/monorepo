@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AxiosError, AxiosResponse } from 'axios';
+import { AxiosHeaders, type AxiosError, type AxiosResponse } from 'axios';
 import type { HttpOptions, HttpResponse } from './types';
 import HttpClient from './http.client';
 
@@ -25,7 +25,7 @@ export default class Http extends HttpClient {
       return {
          isOk: true,
          data: response.data ?? null,
-         headers: (response.headers as any).toJSON(),
+         headers: new AxiosHeaders(response.headers as any)?.toJSON(),
          statusCode: response.status,
       };
    }
@@ -38,7 +38,7 @@ export default class Http extends HttpClient {
       return {
          isOk: false,
          data: error.response?.data ?? null,
-         headers: (error.response?.headers as any).toJSON(),
+         headers: new AxiosHeaders(error.response?.headers as any).toJSON(),
          statusCode: error.response?.status,
       };
    }

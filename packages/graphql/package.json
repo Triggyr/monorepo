@@ -1,0 +1,28 @@
+{
+   "name": "@triggyr/graphql",
+   "version": "1.0.0",
+   "description": "Simiplified graphql module for triggyr's hasura service",
+   "main": "dist/index.js",
+   "types": "dist/index.d.ts",
+   "files": [
+      "dist"
+   ],
+   "scripts": {
+      "build": "tsc -p tsconfig.json",
+      "clean": "rm -rf dist",
+      "lint": "eslint src",
+      "test": "vitest run",
+      "graphql:generate": "graphql-codegen --config codegen.ts"
+   },
+   "packageManager": "pnpm@10.14.0",
+   "devDependencies": {
+      "@graphql-codegen/cli": "^6.0.0",
+      "@graphql-codegen/typescript": "^5.0.2",
+      "dotenv": "^17.2.3",
+      "zod": "^4.1.12"
+   },
+   "dependencies": {
+      "axios": "^1.12.2",
+      "graphql": "^16.11.0"
+   }
+}

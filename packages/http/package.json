@@ -8,7 +8,6 @@
       "dist"
    ],
    "scripts": {
-      "postinstall": "pnpm i && pnpm run clean && pnpm run build",
       "build": "tsc -p tsconfig.json",
       "clean": "rm -rf dist",
       "lint": "eslint src",
