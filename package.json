@@ -1,0 +1,31 @@
+{
+   "name": "monorepo",
+   "description": "Triggyr interal packages monorepo",
+   "private": true,
+   "type": "module",
+   "version": "1.0.0",
+   "workspaces": [
+      "packages/*"
+   ],
+   "scripts": {
+      "build": "pnpm -r build",
+      "lint": "pnpm -r lint",
+      "clean": "pnpm -r clean",
+      "test": "pnpm -r test"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Triggyr/monorepo.git"
+   },
+   "packageManager": "pnpm@10.14.0",
+   "devDependencies": {
+      "@types/node": "^24.8.1",
+      "@typescript-eslint/eslint-plugin": "^8.46.1",
+      "@typescript-eslint/parser": "^8.46.1",
+      "eslint": "^9.38.0",
+      "eslint-config-prettier": "^10.1.8",
+      "prettier": "^3.6.2",
+      "typescript": "^5.9.3",
+      "vitest": "^3.2.4"
+   }
+}
