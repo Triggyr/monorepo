@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AxiosError, AxiosResponse } from 'axios';
 import type { HttpOptions, HttpResponse } from './types';
 import HttpClient from './http.client';
 
 export default class Http extends HttpClient {
-   public interceptors?: HttpOptions['interceptors'];
+   private interceptors?: HttpOptions['interceptors'];
 
    constructor(baseURL: string, options?: HttpOptions) {
       super({
@@ -24,7 +25,7 @@ export default class Http extends HttpClient {
       return {
          isOk: true,
          data: response.data ?? null,
-         headers: response.headers,
+         headers: (response.headers as any).toJSON(),
          statusCode: response.status,
       };
    }
@@ -37,7 +38,7 @@ export default class Http extends HttpClient {
       return {
          isOk: false,
          data: error.response?.data ?? null,
-         headers: error.response?.headers,
+         headers: (error.response?.headers as any).toJSON(),
          statusCode: error.response?.status,
       };
    }

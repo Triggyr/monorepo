@@ -23,8 +23,14 @@ export default abstract class HttpClient {
    }
 
    private _initializeResponseInterceptor = () => {
-      this.instance.interceptors.response.use(this._handleResponse, this._handleError);
-      this.instanceWithoutAuth.interceptors.response.use(this._handleResponse, this._handleError);
+      this.instance.interceptors.response.use(
+         this._handleResponse.bind(this),
+         this._handleError.bind(this),
+      );
+      this.instanceWithoutAuth.interceptors.response.use(
+         this._handleResponse.bind(this),
+         this._handleError.bind(this),
+      );
    };
 
    protected abstract _handleResponse<T>(response: AxiosResponse<T>): any;

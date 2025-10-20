@@ -1,6 +1,7 @@
-import type { AxiosError, AxiosResponse, AxiosRequestHeaders, AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
+import type { AxiosError, AxiosResponse } from 'axios';
+type Header = Record<string, string>;
 export interface HttpOptions {
-    baseHeaders?: AxiosRequestHeaders;
+    baseHeaders?: Header;
     interceptors?: {
         onSuccess?: <T>(response: AxiosResponse) => HttpResponse<T>;
         onError?: <T>(error: AxiosError) => HttpResponse<T>;
@@ -9,6 +10,7 @@ export interface HttpOptions {
 export interface HttpResponse<T> {
     isOk: boolean;
     data: T | null;
-    headers?: RawAxiosResponseHeaders | AxiosResponseHeaders;
+    headers?: Header;
     statusCode?: number;
 }
+export {};

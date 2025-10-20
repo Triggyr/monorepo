@@ -22,7 +22,7 @@ class Http extends http_client_1.default {
         return {
             isOk: true,
             data: response.data ?? null,
-            headers: response.headers,
+            headers: response.headers.toJSON(),
             statusCode: response.status,
         };
     }
@@ -33,7 +33,7 @@ class Http extends http_client_1.default {
         return {
             isOk: false,
             data: error.response?.data ?? null,
-            headers: error.response?.headers,
+            headers: (error.response?.headers).toJSON(),
             statusCode: error.response?.status,
         };
     }

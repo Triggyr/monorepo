@@ -13,8 +13,8 @@ class HttpClient {
         this._initializeResponseInterceptor();
     }
     _initializeResponseInterceptor = () => {
-        this.instance.interceptors.response.use(this._handleResponse, this._handleError);
-        this.instanceWithoutAuth.interceptors.response.use(this._handleResponse, this._handleError);
+        this.instance.interceptors.response.use(this._handleResponse.bind(this), this._handleError.bind(this));
+        this.instanceWithoutAuth.interceptors.response.use(this._handleResponse.bind(this), this._handleError.bind(this));
     };
 }
 exports.default = HttpClient;
