@@ -559,6 +559,10 @@ export type Mutation_Root = {
   delete_user_turnkey_api_keys_by_pk?: Maybe<User_Turnkey_Api_Keys>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
+  /** delete data from the table: "users_2fa" */
+  delete_users_2fa?: Maybe<Users_2fa_Mutation_Response>;
+  /** delete single row from the table: "users_2fa" */
+  delete_users_2fa_by_pk?: Maybe<Users_2fa>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
   /** delete data from the table: "users_wallet" */
@@ -607,6 +611,10 @@ export type Mutation_Root = {
   insert_user_turnkey_api_keys_one?: Maybe<User_Turnkey_Api_Keys>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
+  /** insert data into the table: "users_2fa" */
+  insert_users_2fa?: Maybe<Users_2fa_Mutation_Response>;
+  /** insert a single row into the table: "users_2fa" */
+  insert_users_2fa_one?: Maybe<Users_2fa>;
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
   /** insert data into the table: "users_wallet" */
@@ -665,6 +673,12 @@ export type Mutation_Root = {
   update_user_turnkey_api_keys_many?: Maybe<Array<Maybe<User_Turnkey_Api_Keys_Mutation_Response>>>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
+  /** update data of the table: "users_2fa" */
+  update_users_2fa?: Maybe<Users_2fa_Mutation_Response>;
+  /** update single row of the table: "users_2fa" */
+  update_users_2fa_by_pk?: Maybe<Users_2fa>;
+  /** update multiples rows of table: "users_2fa" */
+  update_users_2fa_many?: Maybe<Array<Maybe<Users_2fa_Mutation_Response>>>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
   /** update multiples rows of table: "users" */
@@ -771,6 +785,18 @@ export type Mutation_RootDelete_User_Turnkey_Api_Keys_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootDelete_UsersArgs = {
   where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Users_2faArgs = {
+  where: Users_2fa_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Users_2fa_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -926,6 +952,20 @@ export type Mutation_RootInsert_User_Turnkey_Api_Keys_OneArgs = {
 export type Mutation_RootInsert_UsersArgs = {
   objects: Array<Users_Insert_Input>;
   on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Users_2faArgs = {
+  objects: Array<Users_2fa_Insert_Input>;
+  on_conflict?: InputMaybe<Users_2fa_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Users_2fa_OneArgs = {
+  object: Users_2fa_Insert_Input;
+  on_conflict?: InputMaybe<Users_2fa_On_Conflict>;
 };
 
 
@@ -1183,6 +1223,36 @@ export type Mutation_RootUpdate_UsersArgs = {
   _prepend?: InputMaybe<Users_Prepend_Input>;
   _set?: InputMaybe<Users_Set_Input>;
   where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_2faArgs = {
+  _append?: InputMaybe<Users_2fa_Append_Input>;
+  _delete_at_path?: InputMaybe<Users_2fa_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Users_2fa_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Users_2fa_Delete_Key_Input>;
+  _prepend?: InputMaybe<Users_2fa_Prepend_Input>;
+  _set?: InputMaybe<Users_2fa_Set_Input>;
+  where: Users_2fa_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_2fa_By_PkArgs = {
+  _append?: InputMaybe<Users_2fa_Append_Input>;
+  _delete_at_path?: InputMaybe<Users_2fa_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Users_2fa_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Users_2fa_Delete_Key_Input>;
+  _prepend?: InputMaybe<Users_2fa_Prepend_Input>;
+  _set?: InputMaybe<Users_2fa_Set_Input>;
+  pk_columns: Users_2fa_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_2fa_ManyArgs = {
+  updates: Array<Users_2fa_Updates>;
 };
 
 
@@ -1809,6 +1879,12 @@ export type Query_Root = {
   user_turnkey_api_keys_by_pk?: Maybe<User_Turnkey_Api_Keys>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
+  /** fetch data from the table: "users_2fa" */
+  users_2fa: Array<Users_2fa>;
+  /** fetch aggregated fields from the table: "users_2fa" */
+  users_2fa_aggregate: Users_2fa_Aggregate;
+  /** fetch data from the table: "users_2fa" using primary key columns */
+  users_2fa_by_pk?: Maybe<Users_2fa>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
@@ -1973,6 +2049,29 @@ export type Query_RootUsersArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Users_Order_By>>;
   where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Query_RootUsers_2faArgs = {
+  distinct_on?: InputMaybe<Array<Users_2fa_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Users_2fa_Order_By>>;
+  where?: InputMaybe<Users_2fa_Bool_Exp>;
+};
+
+
+export type Query_RootUsers_2fa_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Users_2fa_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Users_2fa_Order_By>>;
+  where?: InputMaybe<Users_2fa_Bool_Exp>;
+};
+
+
+export type Query_RootUsers_2fa_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -2519,6 +2618,14 @@ export type Subscription_Root = {
   user_turnkey_api_keys_stream: Array<User_Turnkey_Api_Keys>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
+  /** fetch data from the table: "users_2fa" */
+  users_2fa: Array<Users_2fa>;
+  /** fetch aggregated fields from the table: "users_2fa" */
+  users_2fa_aggregate: Users_2fa_Aggregate;
+  /** fetch data from the table: "users_2fa" using primary key columns */
+  users_2fa_by_pk?: Maybe<Users_2fa>;
+  /** fetch data from the table in a streaming manner: "users_2fa" */
+  users_2fa_stream: Array<Users_2fa>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
@@ -2732,6 +2839,36 @@ export type Subscription_RootUsersArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Users_Order_By>>;
   where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Subscription_RootUsers_2faArgs = {
+  distinct_on?: InputMaybe<Array<Users_2fa_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Users_2fa_Order_By>>;
+  where?: InputMaybe<Users_2fa_Bool_Exp>;
+};
+
+
+export type Subscription_RootUsers_2fa_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Users_2fa_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Users_2fa_Order_By>>;
+  where?: InputMaybe<Users_2fa_Bool_Exp>;
+};
+
+
+export type Subscription_RootUsers_2fa_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootUsers_2fa_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Users_2fa_Stream_Cursor_Input>>;
+  where?: InputMaybe<Users_2fa_Bool_Exp>;
 };
 
 
@@ -3684,6 +3821,8 @@ export type Users = {
   topups_aggregate: User_Topups_Aggregate;
   /** An object relationship */
   turnkey_api_key?: Maybe<User_Turnkey_Api_Keys>;
+  /** An object relationship */
+  two_fa?: Maybe<Users_2fa>;
   updated_at: Scalars['timestamp']['output'];
   version: Scalars['String']['output'];
   /** An object relationship */
@@ -3740,6 +3879,266 @@ export type UsersWorkflows_AggregateArgs = {
   where?: InputMaybe<Workflows_Bool_Exp>;
 };
 
+/** columns and relationships of "users_2fa" */
+export type Users_2fa = {
+  created_at: Scalars['timestamptz']['output'];
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+  encoding: Scalars['String']['output'];
+  id: Scalars['uuid']['output'];
+  is_verified: Scalars['Boolean']['output'];
+  metadata?: Maybe<Scalars['jsonb']['output']>;
+  secret: Scalars['String']['output'];
+  updated_at: Scalars['timestamptz']['output'];
+  /** An object relationship */
+  user: Users;
+  user_id: Scalars['uuid']['output'];
+};
+
+
+/** columns and relationships of "users_2fa" */
+export type Users_2faMetadataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "users_2fa" */
+export type Users_2fa_Aggregate = {
+  aggregate?: Maybe<Users_2fa_Aggregate_Fields>;
+  nodes: Array<Users_2fa>;
+};
+
+/** aggregate fields of "users_2fa" */
+export type Users_2fa_Aggregate_Fields = {
+  count: Scalars['Int']['output'];
+  max?: Maybe<Users_2fa_Max_Fields>;
+  min?: Maybe<Users_2fa_Min_Fields>;
+};
+
+
+/** aggregate fields of "users_2fa" */
+export type Users_2fa_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Users_2fa_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Users_2fa_Append_Input = {
+  metadata?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "users_2fa". All fields are combined with a logical 'AND'. */
+export type Users_2fa_Bool_Exp = {
+  _and?: InputMaybe<Array<Users_2fa_Bool_Exp>>;
+  _not?: InputMaybe<Users_2fa_Bool_Exp>;
+  _or?: InputMaybe<Array<Users_2fa_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  encoding?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  is_verified?: InputMaybe<Boolean_Comparison_Exp>;
+  metadata?: InputMaybe<Jsonb_Comparison_Exp>;
+  secret?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "users_2fa" */
+export type Users_2fa_Constraint =
+  /** unique or primary key constraint on columns "id" */
+  | 'users_2fa_pkey'
+  /** unique or primary key constraint on columns "user_id" */
+  | 'users_2fa_user_id_key';
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Users_2fa_Delete_At_Path_Input = {
+  metadata?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Users_2fa_Delete_Elem_Input = {
+  metadata?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Users_2fa_Delete_Key_Input = {
+  metadata?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for inserting data into table "users_2fa" */
+export type Users_2fa_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  encoding?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  is_verified?: InputMaybe<Scalars['Boolean']['input']>;
+  metadata?: InputMaybe<Scalars['jsonb']['input']>;
+  secret?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  user_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Users_2fa_Max_Fields = {
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+  encoding?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  secret?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  user_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregate min on columns */
+export type Users_2fa_Min_Fields = {
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+  encoding?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  secret?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  user_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** response of any mutation on the table "users_2fa" */
+export type Users_2fa_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Users_2fa>;
+};
+
+/** input type for inserting object relation for remote table "users_2fa" */
+export type Users_2fa_Obj_Rel_Insert_Input = {
+  data: Users_2fa_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Users_2fa_On_Conflict>;
+};
+
+/** on_conflict condition type for table "users_2fa" */
+export type Users_2fa_On_Conflict = {
+  constraint: Users_2fa_Constraint;
+  update_columns?: Array<Users_2fa_Update_Column>;
+  where?: InputMaybe<Users_2fa_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "users_2fa". */
+export type Users_2fa_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  deleted_at?: InputMaybe<Order_By>;
+  encoding?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  is_verified?: InputMaybe<Order_By>;
+  metadata?: InputMaybe<Order_By>;
+  secret?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: users_2fa */
+export type Users_2fa_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Users_2fa_Prepend_Input = {
+  metadata?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "users_2fa" */
+export type Users_2fa_Select_Column =
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'deleted_at'
+  /** column name */
+  | 'encoding'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'is_verified'
+  /** column name */
+  | 'metadata'
+  /** column name */
+  | 'secret'
+  /** column name */
+  | 'updated_at'
+  /** column name */
+  | 'user_id';
+
+/** input type for updating data in table "users_2fa" */
+export type Users_2fa_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  encoding?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  is_verified?: InputMaybe<Scalars['Boolean']['input']>;
+  metadata?: InputMaybe<Scalars['jsonb']['input']>;
+  secret?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  user_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** Streaming cursor of the table "users_2fa" */
+export type Users_2fa_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Users_2fa_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Users_2fa_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  encoding?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  is_verified?: InputMaybe<Scalars['Boolean']['input']>;
+  metadata?: InputMaybe<Scalars['jsonb']['input']>;
+  secret?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  user_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** update columns of table "users_2fa" */
+export type Users_2fa_Update_Column =
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'deleted_at'
+  /** column name */
+  | 'encoding'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'is_verified'
+  /** column name */
+  | 'metadata'
+  /** column name */
+  | 'secret'
+  /** column name */
+  | 'updated_at'
+  /** column name */
+  | 'user_id';
+
+export type Users_2fa_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Users_2fa_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Users_2fa_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Users_2fa_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Users_2fa_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Users_2fa_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Users_2fa_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Users_2fa_Bool_Exp;
+};
+
 /** aggregated selection of "users" */
 export type Users_Aggregate = {
   aggregate?: Maybe<Users_Aggregate_Fields>;
@@ -3794,6 +4193,7 @@ export type Users_Bool_Exp = {
   topups?: InputMaybe<User_Topups_Bool_Exp>;
   topups_aggregate?: InputMaybe<User_Topups_Aggregate_Bool_Exp>;
   turnkey_api_key?: InputMaybe<User_Turnkey_Api_Keys_Bool_Exp>;
+  two_fa?: InputMaybe<Users_2fa_Bool_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   version?: InputMaybe<String_Comparison_Exp>;
   wallet?: InputMaybe<Users_Wallet_Bool_Exp>;
@@ -3835,6 +4235,7 @@ export type Users_Insert_Input = {
   name?: InputMaybe<Scalars['String']['input']>;
   topups?: InputMaybe<User_Topups_Arr_Rel_Insert_Input>;
   turnkey_api_key?: InputMaybe<User_Turnkey_Api_Keys_Obj_Rel_Insert_Input>;
+  two_fa?: InputMaybe<Users_2fa_Obj_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   version?: InputMaybe<Scalars['String']['input']>;
   wallet?: InputMaybe<Users_Wallet_Obj_Rel_Insert_Input>;
@@ -3900,6 +4301,7 @@ export type Users_Order_By = {
   name?: InputMaybe<Order_By>;
   topups_aggregate?: InputMaybe<User_Topups_Aggregate_Order_By>;
   turnkey_api_key?: InputMaybe<User_Turnkey_Api_Keys_Order_By>;
+  two_fa?: InputMaybe<Users_2fa_Order_By>;
   updated_at?: InputMaybe<Order_By>;
   version?: InputMaybe<Order_By>;
   wallet?: InputMaybe<Users_Wallet_Order_By>;
