@@ -1,0 +1,19 @@
+{
+   "config_filename": "triggyr.config.js",
+   "field_types": ["string", "number", "object", "datetime", "array"],
+   "component_types": [
+      { "name": "Trigger", "value": "trigger" },
+      { "name": "Action", "value": "action" },
+      { "name": "Output", "value": "output" }
+   ],
+   "component_sub_types": [
+      { "name": "NFT", "value": "nft" },
+      { "name": "Token", "value": "token" },
+      { "name": "Utility", "value": "utility" },
+      { "name": "Smart Contract", "value": "smart_contract" }
+   ],
+   "supported_blockchains": [
+      { "name": "Ethereum", "value": "ethereum" },
+      { "name": "Solana", "value": "solana" }
+   ]
+}

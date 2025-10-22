@@ -1,0 +1,29 @@
+{
+   "name": "@triggyr/cli",
+   "version": "1.0.0",
+   "description": "Triggyr cli tool for managing components",
+   "main": "dist/index.js",
+   "types": "dist/index.d.ts",
+   "files": [
+      "dist"
+   ],
+   "bin": {
+      "@triggyr/cli": "dist/index.js"
+   },
+   "scripts": {
+      "build": "tsc -p tsconfig.json",
+      "clean": "rm -rf dist",
+      "lint": "eslint src",
+      "test": "vitest run"
+   },
+   "packageManager": "pnpm@10.14.0",
+   "dependencies": {
+      "@triggyr/graphql": "workspace:*",
+      "boxen": "^8.0.1",
+      "chalk": "^5.6.2",
+      "commander": "^14.0.1",
+      "inquirer": "^12.10.0",
+      "ora": "^9.0.0",
+      "zod": "^4.1.12"
+   }
+}
