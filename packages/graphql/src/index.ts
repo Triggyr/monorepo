@@ -1,5 +1,5 @@
 import GraphqlClient from './adapter/client';
-export * as Types from './generated/graphql';
+export * from './generated/graphql';
 
 class Graphql extends GraphqlClient {}
 
