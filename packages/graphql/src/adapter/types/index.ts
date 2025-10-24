@@ -32,6 +32,7 @@ export type GraphqlSelectTypes = {
    user_topups: Generated.User_Topups;
    user_turnkey_api_keys: Generated.User_Turnkey_Api_Keys;
    user_wallet: Generated.Users_Wallet;
+   user_wallet_settings: Generated.User_Wallet_Settings;
    users_2fa: Generated.Users_2fa;
    wallet_accounts: Generated.Wallet_Accounts;
    workflow_nodes: Generated.Workflow_Nodes;
@@ -49,6 +50,7 @@ export type GraphqlInsertTypes = {
    user_topups: Generated.User_Topups_Insert_Input;
    user_turnkey_api_keys: Generated.User_Turnkey_Api_Keys_Insert_Input;
    user_wallet: Generated.Users_Wallet_Insert_Input;
+   user_wallet_settings: Generated.User_Wallet_Settings_Insert_Input;
    wallet_accounts: Generated.Wallet_Accounts_Insert_Input;
    workflow_nodes: Generated.Workflow_Nodes_Insert_Input;
    workflow_runs: Generated.Workflow_Runs_Insert_Input;
@@ -65,6 +67,7 @@ export type GraphqlUpdateTypes = {
    user_topups: Generated.User_Topups_Set_Input;
    user_turnkey_api_keys: Generated.User_Turnkey_Api_Keys_Set_Input;
    user_wallet: Generated.Users_Wallet_Set_Input;
+   user_wallet_settings: Generated.User_Wallet_Settings_Set_Input;
    wallet_accounts: Generated.Wallet_Accounts_Set_Input;
    workflow_nodes: Generated.Workflow_Nodes_Set_Input;
    workflow_runs: Generated.Workflow_Runs_Set_Input;
@@ -88,17 +91,19 @@ export type GraphqlBoolExp<T extends keyof GraphqlSelectTypes> = T extends 'comp
                ? Generated.User_Turnkey_Api_Keys_Bool_Exp
                : T extends 'user_wallet'
                  ? Generated.Users_Wallet_Bool_Exp
-                 : T extends 'wallet_accounts'
-                   ? Generated.Wallet_Accounts_Bool_Exp
-                   : T extends 'workflow_nodes'
-                     ? Generated.Workflow_Nodes_Bool_Exp
-                     : T extends 'workflow_runs'
-                       ? Generated.Workflow_Runs_Bool_Exp
-                       : T extends 'workflow_triggers'
-                         ? Generated.Workflow_Triggers_Bool_Exp
-                         : T extends 'workflows'
-                           ? Generated.Workflows_Bool_Exp
-                           : never;
+                 : T extends 'user_wallet_settings'
+                   ? Generated.User_Wallet_Settings_Bool_Exp
+                   : T extends 'wallet_accounts'
+                     ? Generated.Wallet_Accounts_Bool_Exp
+                     : T extends 'workflow_nodes'
+                       ? Generated.Workflow_Nodes_Bool_Exp
+                       : T extends 'workflow_runs'
+                         ? Generated.Workflow_Runs_Bool_Exp
+                         : T extends 'workflow_triggers'
+                           ? Generated.Workflow_Triggers_Bool_Exp
+                           : T extends 'workflows'
+                             ? Generated.Workflows_Bool_Exp
+                             : never;
 
 export type GraphqlOrderBy<T extends keyof GraphqlSelectTypes> = T extends 'components'
    ? Generated.Components_Order_By
@@ -116,17 +121,19 @@ export type GraphqlOrderBy<T extends keyof GraphqlSelectTypes> = T extends 'comp
                ? Generated.User_Turnkey_Api_Keys_Order_By
                : T extends 'user_wallet'
                  ? Generated.Users_Wallet_Order_By
-                 : T extends 'wallet_accounts'
-                   ? Generated.Wallet_Accounts_Order_By
-                   : T extends 'workflow_nodes'
-                     ? Generated.Workflow_Nodes_Order_By
-                     : T extends 'workflow_runs'
-                       ? Generated.Workflow_Runs_Order_By
-                       : T extends 'workflow_triggers'
-                         ? Generated.Workflow_Triggers_Order_By
-                         : T extends 'workflows'
-                           ? Generated.Workflows_Order_By
-                           : never;
+                 : T extends 'user_wallet_settings'
+                   ? Generated.User_Wallet_Settings_Order_By
+                   : T extends 'wallet_accounts'
+                     ? Generated.Wallet_Accounts_Order_By
+                     : T extends 'workflow_nodes'
+                       ? Generated.Workflow_Nodes_Order_By
+                       : T extends 'workflow_runs'
+                         ? Generated.Workflow_Runs_Order_By
+                         : T extends 'workflow_triggers'
+                           ? Generated.Workflow_Triggers_Order_By
+                           : T extends 'workflows'
+                             ? Generated.Workflows_Order_By
+                             : never;
 
 export interface GraphqlResponse<T, K> {
    errors: T;
