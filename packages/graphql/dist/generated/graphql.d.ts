@@ -548,6 +548,10 @@ export type Mutation_Root = {
     delete_user_turnkey_api_keys?: Maybe<User_Turnkey_Api_Keys_Mutation_Response>;
     /** delete single row from the table: "user_turnkey_api_keys" */
     delete_user_turnkey_api_keys_by_pk?: Maybe<User_Turnkey_Api_Keys>;
+    /** delete data from the table: "user_wallet_settings" */
+    delete_user_wallet_settings?: Maybe<User_Wallet_Settings_Mutation_Response>;
+    /** delete single row from the table: "user_wallet_settings" */
+    delete_user_wallet_settings_by_pk?: Maybe<User_Wallet_Settings>;
     /** delete data from the table: "users" */
     delete_users?: Maybe<Users_Mutation_Response>;
     /** delete data from the table: "users_2fa" */
@@ -600,6 +604,10 @@ export type Mutation_Root = {
     insert_user_turnkey_api_keys?: Maybe<User_Turnkey_Api_Keys_Mutation_Response>;
     /** insert a single row into the table: "user_turnkey_api_keys" */
     insert_user_turnkey_api_keys_one?: Maybe<User_Turnkey_Api_Keys>;
+    /** insert data into the table: "user_wallet_settings" */
+    insert_user_wallet_settings?: Maybe<User_Wallet_Settings_Mutation_Response>;
+    /** insert a single row into the table: "user_wallet_settings" */
+    insert_user_wallet_settings_one?: Maybe<User_Wallet_Settings>;
     /** insert data into the table: "users" */
     insert_users?: Maybe<Users_Mutation_Response>;
     /** insert data into the table: "users_2fa" */
@@ -662,6 +670,12 @@ export type Mutation_Root = {
     update_user_turnkey_api_keys_by_pk?: Maybe<User_Turnkey_Api_Keys>;
     /** update multiples rows of table: "user_turnkey_api_keys" */
     update_user_turnkey_api_keys_many?: Maybe<Array<Maybe<User_Turnkey_Api_Keys_Mutation_Response>>>;
+    /** update data of the table: "user_wallet_settings" */
+    update_user_wallet_settings?: Maybe<User_Wallet_Settings_Mutation_Response>;
+    /** update single row of the table: "user_wallet_settings" */
+    update_user_wallet_settings_by_pk?: Maybe<User_Wallet_Settings>;
+    /** update multiples rows of table: "user_wallet_settings" */
+    update_user_wallet_settings_many?: Maybe<Array<Maybe<User_Wallet_Settings_Mutation_Response>>>;
     /** update data of the table: "users" */
     update_users?: Maybe<Users_Mutation_Response>;
     /** update data of the table: "users_2fa" */
@@ -749,6 +763,14 @@ export type Mutation_RootDelete_User_Turnkey_Api_KeysArgs = {
 };
 /** mutation root */
 export type Mutation_RootDelete_User_Turnkey_Api_Keys_By_PkArgs = {
+    id: Scalars['uuid']['input'];
+};
+/** mutation root */
+export type Mutation_RootDelete_User_Wallet_SettingsArgs = {
+    where: User_Wallet_Settings_Bool_Exp;
+};
+/** mutation root */
+export type Mutation_RootDelete_User_Wallet_Settings_By_PkArgs = {
     id: Scalars['uuid']['input'];
 };
 /** mutation root */
@@ -864,6 +886,16 @@ export type Mutation_RootInsert_User_Turnkey_Api_KeysArgs = {
 export type Mutation_RootInsert_User_Turnkey_Api_Keys_OneArgs = {
     object: User_Turnkey_Api_Keys_Insert_Input;
     on_conflict?: InputMaybe<User_Turnkey_Api_Keys_On_Conflict>;
+};
+/** mutation root */
+export type Mutation_RootInsert_User_Wallet_SettingsArgs = {
+    objects: Array<User_Wallet_Settings_Insert_Input>;
+    on_conflict?: InputMaybe<User_Wallet_Settings_On_Conflict>;
+};
+/** mutation root */
+export type Mutation_RootInsert_User_Wallet_Settings_OneArgs = {
+    object: User_Wallet_Settings_Insert_Input;
+    on_conflict?: InputMaybe<User_Wallet_Settings_On_Conflict>;
 };
 /** mutation root */
 export type Mutation_RootInsert_UsersArgs = {
@@ -1068,6 +1100,30 @@ export type Mutation_RootUpdate_User_Turnkey_Api_Keys_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_User_Turnkey_Api_Keys_ManyArgs = {
     updates: Array<User_Turnkey_Api_Keys_Updates>;
+};
+/** mutation root */
+export type Mutation_RootUpdate_User_Wallet_SettingsArgs = {
+    _append?: InputMaybe<User_Wallet_Settings_Append_Input>;
+    _delete_at_path?: InputMaybe<User_Wallet_Settings_Delete_At_Path_Input>;
+    _delete_elem?: InputMaybe<User_Wallet_Settings_Delete_Elem_Input>;
+    _delete_key?: InputMaybe<User_Wallet_Settings_Delete_Key_Input>;
+    _prepend?: InputMaybe<User_Wallet_Settings_Prepend_Input>;
+    _set?: InputMaybe<User_Wallet_Settings_Set_Input>;
+    where: User_Wallet_Settings_Bool_Exp;
+};
+/** mutation root */
+export type Mutation_RootUpdate_User_Wallet_Settings_By_PkArgs = {
+    _append?: InputMaybe<User_Wallet_Settings_Append_Input>;
+    _delete_at_path?: InputMaybe<User_Wallet_Settings_Delete_At_Path_Input>;
+    _delete_elem?: InputMaybe<User_Wallet_Settings_Delete_Elem_Input>;
+    _delete_key?: InputMaybe<User_Wallet_Settings_Delete_Key_Input>;
+    _prepend?: InputMaybe<User_Wallet_Settings_Prepend_Input>;
+    _set?: InputMaybe<User_Wallet_Settings_Set_Input>;
+    pk_columns: User_Wallet_Settings_Pk_Columns_Input;
+};
+/** mutation root */
+export type Mutation_RootUpdate_User_Wallet_Settings_ManyArgs = {
+    updates: Array<User_Wallet_Settings_Updates>;
 };
 /** mutation root */
 export type Mutation_RootUpdate_UsersArgs = {
@@ -1646,6 +1702,12 @@ export type Query_Root = {
     user_turnkey_api_keys_aggregate: User_Turnkey_Api_Keys_Aggregate;
     /** fetch data from the table: "user_turnkey_api_keys" using primary key columns */
     user_turnkey_api_keys_by_pk?: Maybe<User_Turnkey_Api_Keys>;
+    /** fetch data from the table: "user_wallet_settings" */
+    user_wallet_settings: Array<User_Wallet_Settings>;
+    /** fetch aggregated fields from the table: "user_wallet_settings" */
+    user_wallet_settings_aggregate: User_Wallet_Settings_Aggregate;
+    /** fetch data from the table: "user_wallet_settings" using primary key columns */
+    user_wallet_settings_by_pk?: Maybe<User_Wallet_Settings>;
     /** fetch data from the table: "users" */
     users: Array<Users>;
     /** fetch data from the table: "users_2fa" */
@@ -1778,6 +1840,23 @@ export type Query_RootUser_Turnkey_Api_Keys_AggregateArgs = {
     where?: InputMaybe<User_Turnkey_Api_Keys_Bool_Exp>;
 };
 export type Query_RootUser_Turnkey_Api_Keys_By_PkArgs = {
+    id: Scalars['uuid']['input'];
+};
+export type Query_RootUser_Wallet_SettingsArgs = {
+    distinct_on?: InputMaybe<Array<User_Wallet_Settings_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<User_Wallet_Settings_Order_By>>;
+    where?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
+};
+export type Query_RootUser_Wallet_Settings_AggregateArgs = {
+    distinct_on?: InputMaybe<Array<User_Wallet_Settings_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<User_Wallet_Settings_Order_By>>;
+    where?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
+};
+export type Query_RootUser_Wallet_Settings_By_PkArgs = {
     id: Scalars['uuid']['input'];
 };
 export type Query_RootUsersArgs = {
@@ -2269,6 +2348,14 @@ export type Subscription_Root = {
     user_turnkey_api_keys_by_pk?: Maybe<User_Turnkey_Api_Keys>;
     /** fetch data from the table in a streaming manner: "user_turnkey_api_keys" */
     user_turnkey_api_keys_stream: Array<User_Turnkey_Api_Keys>;
+    /** fetch data from the table: "user_wallet_settings" */
+    user_wallet_settings: Array<User_Wallet_Settings>;
+    /** fetch aggregated fields from the table: "user_wallet_settings" */
+    user_wallet_settings_aggregate: User_Wallet_Settings_Aggregate;
+    /** fetch data from the table: "user_wallet_settings" using primary key columns */
+    user_wallet_settings_by_pk?: Maybe<User_Wallet_Settings>;
+    /** fetch data from the table in a streaming manner: "user_wallet_settings" */
+    user_wallet_settings_stream: Array<User_Wallet_Settings>;
     /** fetch data from the table: "users" */
     users: Array<Users>;
     /** fetch data from the table: "users_2fa" */
@@ -2443,6 +2530,28 @@ export type Subscription_RootUser_Turnkey_Api_Keys_StreamArgs = {
     batch_size: Scalars['Int']['input'];
     cursor: Array<InputMaybe<User_Turnkey_Api_Keys_Stream_Cursor_Input>>;
     where?: InputMaybe<User_Turnkey_Api_Keys_Bool_Exp>;
+};
+export type Subscription_RootUser_Wallet_SettingsArgs = {
+    distinct_on?: InputMaybe<Array<User_Wallet_Settings_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<User_Wallet_Settings_Order_By>>;
+    where?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
+};
+export type Subscription_RootUser_Wallet_Settings_AggregateArgs = {
+    distinct_on?: InputMaybe<Array<User_Wallet_Settings_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<User_Wallet_Settings_Order_By>>;
+    where?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
+};
+export type Subscription_RootUser_Wallet_Settings_By_PkArgs = {
+    id: Scalars['uuid']['input'];
+};
+export type Subscription_RootUser_Wallet_Settings_StreamArgs = {
+    batch_size: Scalars['Int']['input'];
+    cursor: Array<InputMaybe<User_Wallet_Settings_Stream_Cursor_Input>>;
+    where?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
 };
 export type Subscription_RootUsersArgs = {
     distinct_on?: InputMaybe<Array<Users_Select_Column>>;
@@ -3272,6 +3381,223 @@ export type User_Turnkey_Api_Keys_Updates = {
     /** filter the rows which have to be updated */
     where: User_Turnkey_Api_Keys_Bool_Exp;
 };
+/** columns and relationships of "user_wallet_settings" */
+export type User_Wallet_Settings = {
+    config: Scalars['jsonb']['output'];
+    created_at: Scalars['timestamptz']['output'];
+    deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+    id: Scalars['uuid']['output'];
+    metadata?: Maybe<Scalars['jsonb']['output']>;
+    updated_at: Scalars['timestamptz']['output'];
+    /** An object relationship */
+    user: Users;
+    user_id: Scalars['uuid']['output'];
+};
+/** columns and relationships of "user_wallet_settings" */
+export type User_Wallet_SettingsConfigArgs = {
+    path?: InputMaybe<Scalars['String']['input']>;
+};
+/** columns and relationships of "user_wallet_settings" */
+export type User_Wallet_SettingsMetadataArgs = {
+    path?: InputMaybe<Scalars['String']['input']>;
+};
+/** aggregated selection of "user_wallet_settings" */
+export type User_Wallet_Settings_Aggregate = {
+    aggregate?: Maybe<User_Wallet_Settings_Aggregate_Fields>;
+    nodes: Array<User_Wallet_Settings>;
+};
+/** aggregate fields of "user_wallet_settings" */
+export type User_Wallet_Settings_Aggregate_Fields = {
+    count: Scalars['Int']['output'];
+    max?: Maybe<User_Wallet_Settings_Max_Fields>;
+    min?: Maybe<User_Wallet_Settings_Min_Fields>;
+};
+/** aggregate fields of "user_wallet_settings" */
+export type User_Wallet_Settings_Aggregate_FieldsCountArgs = {
+    columns?: InputMaybe<Array<User_Wallet_Settings_Select_Column>>;
+    distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type User_Wallet_Settings_Append_Input = {
+    config?: InputMaybe<Scalars['jsonb']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+};
+/** Boolean expression to filter rows from the table "user_wallet_settings". All fields are combined with a logical 'AND'. */
+export type User_Wallet_Settings_Bool_Exp = {
+    _and?: InputMaybe<Array<User_Wallet_Settings_Bool_Exp>>;
+    _not?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
+    _or?: InputMaybe<Array<User_Wallet_Settings_Bool_Exp>>;
+    config?: InputMaybe<Jsonb_Comparison_Exp>;
+    created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+    deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+    id?: InputMaybe<Uuid_Comparison_Exp>;
+    metadata?: InputMaybe<Jsonb_Comparison_Exp>;
+    updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+    user?: InputMaybe<Users_Bool_Exp>;
+    user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+/** unique or primary key constraints on table "user_wallet_settings" */
+export type User_Wallet_Settings_Constraint = 
+/** unique or primary key constraint on columns "id" */
+'user_wallet_settings_pkey'
+/** unique or primary key constraint on columns "user_id" */
+ | 'user_wallet_settings_user_id_key';
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type User_Wallet_Settings_Delete_At_Path_Input = {
+    config?: InputMaybe<Array<Scalars['String']['input']>>;
+    metadata?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type User_Wallet_Settings_Delete_Elem_Input = {
+    config?: InputMaybe<Scalars['Int']['input']>;
+    metadata?: InputMaybe<Scalars['Int']['input']>;
+};
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type User_Wallet_Settings_Delete_Key_Input = {
+    config?: InputMaybe<Scalars['String']['input']>;
+    metadata?: InputMaybe<Scalars['String']['input']>;
+};
+/** input type for inserting data into table "user_wallet_settings" */
+export type User_Wallet_Settings_Insert_Input = {
+    config?: InputMaybe<Scalars['jsonb']['input']>;
+    created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    id?: InputMaybe<Scalars['uuid']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+    user_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** aggregate max on columns */
+export type User_Wallet_Settings_Max_Fields = {
+    created_at?: Maybe<Scalars['timestamptz']['output']>;
+    deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+    id?: Maybe<Scalars['uuid']['output']>;
+    updated_at?: Maybe<Scalars['timestamptz']['output']>;
+    user_id?: Maybe<Scalars['uuid']['output']>;
+};
+/** aggregate min on columns */
+export type User_Wallet_Settings_Min_Fields = {
+    created_at?: Maybe<Scalars['timestamptz']['output']>;
+    deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+    id?: Maybe<Scalars['uuid']['output']>;
+    updated_at?: Maybe<Scalars['timestamptz']['output']>;
+    user_id?: Maybe<Scalars['uuid']['output']>;
+};
+/** response of any mutation on the table "user_wallet_settings" */
+export type User_Wallet_Settings_Mutation_Response = {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']['output'];
+    /** data from the rows affected by the mutation */
+    returning: Array<User_Wallet_Settings>;
+};
+/** input type for inserting object relation for remote table "user_wallet_settings" */
+export type User_Wallet_Settings_Obj_Rel_Insert_Input = {
+    data: User_Wallet_Settings_Insert_Input;
+    /** upsert condition */
+    on_conflict?: InputMaybe<User_Wallet_Settings_On_Conflict>;
+};
+/** on_conflict condition type for table "user_wallet_settings" */
+export type User_Wallet_Settings_On_Conflict = {
+    constraint: User_Wallet_Settings_Constraint;
+    update_columns?: Array<User_Wallet_Settings_Update_Column>;
+    where?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
+};
+/** Ordering options when selecting data from "user_wallet_settings". */
+export type User_Wallet_Settings_Order_By = {
+    config?: InputMaybe<Order_By>;
+    created_at?: InputMaybe<Order_By>;
+    deleted_at?: InputMaybe<Order_By>;
+    id?: InputMaybe<Order_By>;
+    metadata?: InputMaybe<Order_By>;
+    updated_at?: InputMaybe<Order_By>;
+    user?: InputMaybe<Users_Order_By>;
+    user_id?: InputMaybe<Order_By>;
+};
+/** primary key columns input for table: user_wallet_settings */
+export type User_Wallet_Settings_Pk_Columns_Input = {
+    id: Scalars['uuid']['input'];
+};
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type User_Wallet_Settings_Prepend_Input = {
+    config?: InputMaybe<Scalars['jsonb']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+};
+/** select columns of table "user_wallet_settings" */
+export type User_Wallet_Settings_Select_Column = 
+/** column name */
+'config'
+/** column name */
+ | 'created_at'
+/** column name */
+ | 'deleted_at'
+/** column name */
+ | 'id'
+/** column name */
+ | 'metadata'
+/** column name */
+ | 'updated_at'
+/** column name */
+ | 'user_id';
+/** input type for updating data in table "user_wallet_settings" */
+export type User_Wallet_Settings_Set_Input = {
+    config?: InputMaybe<Scalars['jsonb']['input']>;
+    created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    id?: InputMaybe<Scalars['uuid']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    user_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** Streaming cursor of the table "user_wallet_settings" */
+export type User_Wallet_Settings_Stream_Cursor_Input = {
+    /** Stream column input with initial value */
+    initial_value: User_Wallet_Settings_Stream_Cursor_Value_Input;
+    /** cursor ordering */
+    ordering?: InputMaybe<Cursor_Ordering>;
+};
+/** Initial value of the column from where the streaming should start */
+export type User_Wallet_Settings_Stream_Cursor_Value_Input = {
+    config?: InputMaybe<Scalars['jsonb']['input']>;
+    created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    id?: InputMaybe<Scalars['uuid']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    user_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** update columns of table "user_wallet_settings" */
+export type User_Wallet_Settings_Update_Column = 
+/** column name */
+'config'
+/** column name */
+ | 'created_at'
+/** column name */
+ | 'deleted_at'
+/** column name */
+ | 'id'
+/** column name */
+ | 'metadata'
+/** column name */
+ | 'updated_at'
+/** column name */
+ | 'user_id';
+export type User_Wallet_Settings_Updates = {
+    /** append existing jsonb value of filtered columns with new jsonb value */
+    _append?: InputMaybe<User_Wallet_Settings_Append_Input>;
+    /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+    _delete_at_path?: InputMaybe<User_Wallet_Settings_Delete_At_Path_Input>;
+    /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+    _delete_elem?: InputMaybe<User_Wallet_Settings_Delete_Elem_Input>;
+    /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+    _delete_key?: InputMaybe<User_Wallet_Settings_Delete_Key_Input>;
+    /** prepend existing jsonb value of filtered columns with new jsonb value */
+    _prepend?: InputMaybe<User_Wallet_Settings_Prepend_Input>;
+    /** sets the columns of the filtered rows to the given values */
+    _set?: InputMaybe<User_Wallet_Settings_Set_Input>;
+    /** filter the rows which have to be updated */
+    where: User_Wallet_Settings_Bool_Exp;
+};
 /** columns and relationships of "users" */
 export type Users = {
     created_at: Scalars['timestamptz']['output'];
@@ -3294,6 +3620,8 @@ export type Users = {
     version: Scalars['String']['output'];
     /** An object relationship */
     wallet?: Maybe<Users_Wallet>;
+    /** An object relationship */
+    wallet_setting?: Maybe<User_Wallet_Settings>;
     /** An array relationship */
     workflows: Array<Workflows>;
     /** An aggregate relationship */
@@ -3619,6 +3947,7 @@ export type Users_Bool_Exp = {
     updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
     version?: InputMaybe<String_Comparison_Exp>;
     wallet?: InputMaybe<Users_Wallet_Bool_Exp>;
+    wallet_setting?: InputMaybe<User_Wallet_Settings_Bool_Exp>;
     workflows?: InputMaybe<Workflows_Bool_Exp>;
     workflows_aggregate?: InputMaybe<Workflows_Aggregate_Bool_Exp>;
 };
@@ -3656,6 +3985,7 @@ export type Users_Insert_Input = {
     updated_at?: InputMaybe<Scalars['timestamp']['input']>;
     version?: InputMaybe<Scalars['String']['input']>;
     wallet?: InputMaybe<Users_Wallet_Obj_Rel_Insert_Input>;
+    wallet_setting?: InputMaybe<User_Wallet_Settings_Obj_Rel_Insert_Input>;
     workflows?: InputMaybe<Workflows_Arr_Rel_Insert_Input>;
 };
 /** aggregate max on columns */
@@ -3716,6 +4046,7 @@ export type Users_Order_By = {
     updated_at?: InputMaybe<Order_By>;
     version?: InputMaybe<Order_By>;
     wallet?: InputMaybe<Users_Wallet_Order_By>;
+    wallet_setting?: InputMaybe<User_Wallet_Settings_Order_By>;
     workflows_aggregate?: InputMaybe<Workflows_Aggregate_Order_By>;
 };
 /** primary key columns input for table: users */
@@ -4119,6 +4450,7 @@ export type Uuid_Comparison_Exp = {
 /** columns and relationships of "wallet_accounts" */
 export type Wallet_Accounts = {
     address: Scalars['String']['output'];
+    address_format: Scalars['String']['output'];
     blockchain: Scalars['String']['output'];
     created_at: Scalars['timestamptz']['output'];
     deleted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -4180,6 +4512,7 @@ export type Wallet_Accounts_Bool_Exp = {
     _not?: InputMaybe<Wallet_Accounts_Bool_Exp>;
     _or?: InputMaybe<Array<Wallet_Accounts_Bool_Exp>>;
     address?: InputMaybe<String_Comparison_Exp>;
+    address_format?: InputMaybe<String_Comparison_Exp>;
     blockchain?: InputMaybe<String_Comparison_Exp>;
     created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
     deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -4212,6 +4545,7 @@ export type Wallet_Accounts_Delete_Key_Input = {
 /** input type for inserting data into table "wallet_accounts" */
 export type Wallet_Accounts_Insert_Input = {
     address?: InputMaybe<Scalars['String']['input']>;
+    address_format?: InputMaybe<Scalars['String']['input']>;
     blockchain?: InputMaybe<Scalars['String']['input']>;
     created_at?: InputMaybe<Scalars['timestamptz']['input']>;
     deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -4224,6 +4558,7 @@ export type Wallet_Accounts_Insert_Input = {
 /** aggregate max on columns */
 export type Wallet_Accounts_Max_Fields = {
     address?: Maybe<Scalars['String']['output']>;
+    address_format?: Maybe<Scalars['String']['output']>;
     blockchain?: Maybe<Scalars['String']['output']>;
     created_at?: Maybe<Scalars['timestamptz']['output']>;
     deleted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -4234,6 +4569,7 @@ export type Wallet_Accounts_Max_Fields = {
 /** order by max() on columns of table "wallet_accounts" */
 export type Wallet_Accounts_Max_Order_By = {
     address?: InputMaybe<Order_By>;
+    address_format?: InputMaybe<Order_By>;
     blockchain?: InputMaybe<Order_By>;
     created_at?: InputMaybe<Order_By>;
     deleted_at?: InputMaybe<Order_By>;
@@ -4244,6 +4580,7 @@ export type Wallet_Accounts_Max_Order_By = {
 /** aggregate min on columns */
 export type Wallet_Accounts_Min_Fields = {
     address?: Maybe<Scalars['String']['output']>;
+    address_format?: Maybe<Scalars['String']['output']>;
     blockchain?: Maybe<Scalars['String']['output']>;
     created_at?: Maybe<Scalars['timestamptz']['output']>;
     deleted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -4254,6 +4591,7 @@ export type Wallet_Accounts_Min_Fields = {
 /** order by min() on columns of table "wallet_accounts" */
 export type Wallet_Accounts_Min_Order_By = {
     address?: InputMaybe<Order_By>;
+    address_format?: InputMaybe<Order_By>;
     blockchain?: InputMaybe<Order_By>;
     created_at?: InputMaybe<Order_By>;
     deleted_at?: InputMaybe<Order_By>;
@@ -4277,6 +4615,7 @@ export type Wallet_Accounts_On_Conflict = {
 /** Ordering options when selecting data from "wallet_accounts". */
 export type Wallet_Accounts_Order_By = {
     address?: InputMaybe<Order_By>;
+    address_format?: InputMaybe<Order_By>;
     blockchain?: InputMaybe<Order_By>;
     created_at?: InputMaybe<Order_By>;
     deleted_at?: InputMaybe<Order_By>;
@@ -4299,6 +4638,8 @@ export type Wallet_Accounts_Select_Column =
 /** column name */
 'address'
 /** column name */
+ | 'address_format'
+/** column name */
  | 'blockchain'
 /** column name */
  | 'created_at'
@@ -4315,6 +4656,7 @@ export type Wallet_Accounts_Select_Column =
 /** input type for updating data in table "wallet_accounts" */
 export type Wallet_Accounts_Set_Input = {
     address?: InputMaybe<Scalars['String']['input']>;
+    address_format?: InputMaybe<Scalars['String']['input']>;
     blockchain?: InputMaybe<Scalars['String']['input']>;
     created_at?: InputMaybe<Scalars['timestamptz']['input']>;
     deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -4333,6 +4675,7 @@ export type Wallet_Accounts_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Wallet_Accounts_Stream_Cursor_Value_Input = {
     address?: InputMaybe<Scalars['String']['input']>;
+    address_format?: InputMaybe<Scalars['String']['input']>;
     blockchain?: InputMaybe<Scalars['String']['input']>;
     created_at?: InputMaybe<Scalars['timestamptz']['input']>;
     deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -4345,6 +4688,8 @@ export type Wallet_Accounts_Stream_Cursor_Value_Input = {
 export type Wallet_Accounts_Update_Column = 
 /** column name */
 'address'
+/** column name */
+ | 'address_format'
 /** column name */
  | 'blockchain'
 /** column name */
