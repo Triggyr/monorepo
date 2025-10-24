@@ -1,4 +1,4 @@
-import type { AxiosError, AxiosResponse } from 'axios';
+import { type AxiosError, type AxiosResponse } from 'axios';
 import type { HttpOptions, HttpResponse } from './types';
 import HttpClient from './http.client';
 export default class Http extends HttpClient {

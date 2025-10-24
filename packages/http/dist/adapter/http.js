@@ -3,6 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const axios_1 = require("axios");
 const http_client_1 = __importDefault(require("./http.client"));
 class Http extends http_client_1.default {
     interceptors;
@@ -22,7 +24,7 @@ class Http extends http_client_1.default {
         return {
             isOk: true,
             data: response.data ?? null,
-            headers: response.headers.toJSON(),
+            headers: new axios_1.AxiosHeaders(response.headers)?.toJSON(),
             statusCode: response.status,
         };
     }
@@ -33,7 +35,7 @@ class Http extends http_client_1.default {
         return {
             isOk: false,
             data: error.response?.data ?? null,
-            headers: (error.response?.headers).toJSON(),
+            headers: new axios_1.AxiosHeaders(error.response?.headers).toJSON(),
             statusCode: error.response?.status,
         };
     }
