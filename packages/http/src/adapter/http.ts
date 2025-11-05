@@ -5,6 +5,7 @@ import HttpClient from './http.client';
 
 export default class Http extends HttpClient {
    private interceptors?: HttpOptions['interceptors'];
+   private logger?: HttpOptions['logger'];
 
    constructor(baseURL: string, options?: HttpOptions) {
       super({
@@ -15,12 +16,12 @@ export default class Http extends HttpClient {
       });
 
       this.interceptors = options?.interceptors;
+      this.logger = options?.logger;
    }
 
    protected _handleResponse<T>(response: AxiosResponse<T>): HttpResponse<T> {
-      if (this.interceptors?.onSuccess) {
-         return this.interceptors.onSuccess(response);
-      }
+      if (this.logger) this.logger(response.data);
+      if (this.interceptors?.onSuccess) return this.interceptors.onSuccess(response);
 
       return {
          isOk: true,
@@ -31,9 +32,8 @@ export default class Http extends HttpClient {
    }
 
    protected _handleError<T>(error: AxiosError<T>): HttpResponse<T> {
-      if (this.interceptors?.onError) {
-         return this.interceptors.onError(error);
-      }
+      if (this.logger) this.logger(error.response?.data);
+      if (this.interceptors?.onError) return this.interceptors.onError(error);
 
       return {
          isOk: false,

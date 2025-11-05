@@ -6,6 +6,7 @@ interface RawAxiosHeaders {
 
 export interface HttpOptions {
    baseHeaders?: RawAxiosHeaders;
+   logger?: (_: any) => void;
    interceptors?: {
       onSuccess?: <T>(response: AxiosResponse) => HttpResponse<T>;
       onError?: <T>(error: AxiosError) => HttpResponse<T>;

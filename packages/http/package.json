@@ -1,6 +1,6 @@
 {
    "name": "@triggyr/http",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "description": "Simiplified HTTP module built on axios",
    "main": "dist/index.js",
    "types": "dist/index.d.ts",
