@@ -1,0 +1,26 @@
+{
+   "name": "@triggyr/wallet",
+   "version": "1.0.0",
+   "description": "Triggyr wallet API sdk",
+   "main": "dist/index.js",
+   "types": "dist/index.d.ts",
+   "files": [
+      "dist"
+   ],
+   "scripts": {
+      "build": "tsc -p tsconfig.json",
+      "clean": "rm -rf dist",
+      "lint": "eslint src",
+      "test": "vitest run"
+   },
+   "packageManager": "pnpm@10.14.0",
+   "dependencies": {
+      "@triggyr/http": "workspace:*",
+      "@turnkey/crypto": "^2.8.4",
+      "axios": "^1.12.2",
+      "lodash": "^4.17.21"
+   },
+   "devDependencies": {
+      "@types/lodash": "^4.17.20"
+   }
+}
