@@ -18,7 +18,7 @@
    },
    "packageManager": "pnpm@10.14.0",
    "dependencies": {
-      "@triggyr/graphql": "workspace:*",
+      "@triggyr/graphql": "https://gitpkg.vercel.app/Triggyr/monorepo/packages/graphql?893465f474cadb3389f74ffed9f6d98ccb2c45b1",
       "boxen": "^8.0.1",
       "chalk": "^5.6.2",
       "commander": "^14.0.1",
