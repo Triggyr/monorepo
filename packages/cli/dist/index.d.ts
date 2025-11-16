@@ -1,3 +1,2 @@
-#!/usr/bin/env node
-export * as ComponentLoader from './loader';
+export { default as ComponentLoader } from './loader';
 export type { ComponentOpts, TriggyrCLIConfig } from './adapter/types';

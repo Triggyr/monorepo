@@ -8,7 +8,7 @@
       "dist"
    ],
    "bin": {
-      "@triggyr/cli": "dist/index.js"
+      "triggyr": "./dist/cli.js"
    },
    "scripts": {
       "build": "tsc -p tsconfig.json",
