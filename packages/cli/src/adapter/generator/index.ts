@@ -193,6 +193,25 @@ class Generator {
          ? `throw new Error("Component is coming soon..");`
          : `return null;`;
 
+      const triggerFns =
+         component.type === 'trigger'
+            ? `
+               export function init(input: Input, opts: ComponentOpts): Promise<boolean> {
+                  // TODO: function to set trigger for component
+                  input = validator(input);
+
+                  return false;
+               }
+
+               export function stop(input: Input, opts: ComponentOpts): Promise<boolean> {
+                  // TODO: function to kill trigger for component
+                  input = validator(input);
+                  
+                  return false;
+               }
+            `
+            : ``;
+
       return `
         /**
         *
@@ -207,6 +226,9 @@ class Generator {
         import { type ComponentOpts } from '@triggyr/cli';
         import z from 'zod';
         
+        // DO NOT EDIT!!!!
+        const component_id = '${component.id}';
+
         ${inputInterface}
 
         ${outputInterface}
@@ -215,7 +237,9 @@ class Generator {
             ${this.generateZodSchema(component)}
          
             return schema.parse(input);
-         }
+        }
+
+        ${triggerFns}
 
         export default async function (input: Input, opts: ComponentOpts): Promise<Output | null> {
             // TODO: Implement the actual logic for ${component.name}

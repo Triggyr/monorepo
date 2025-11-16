@@ -7,6 +7,7 @@ import add from './adapter/commands/add';
 import remove from './adapter/commands/remove';
 import update from './adapter/commands/update';
 
+export * as ComponentLoader from './loader';
 export type { ComponentOpts, TriggyrCLIConfig } from './adapter/types';
 
 console.log(

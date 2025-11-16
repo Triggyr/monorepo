@@ -1,3 +1,4 @@
+import type { Workflows } from '@triggyr/graphql';
 import z from 'zod';
 
 export const TriggyrCLIConfig = z.object({
@@ -10,27 +11,21 @@ export const TriggyrCLIConfig = z.object({
 
 export type TriggyrCLIConfig = z.infer<typeof TriggyrCLIConfig>;
 
+export type DeepPartial<T> = T extends object
+   ? T extends Array<infer U>
+      ? Array<DeepPartial<U>>
+      : T extends Function
+        ? T
+        : { [P in keyof T]?: DeepPartial<T[P]> }
+   : T;
+
 export type ComponentOpts = {
    store: Map<string, any>;
-   workflow: {
-      id: string;
-      status: 'published' | 'draft';
-      metadata: null | {
-         [key: string]: any;
-      };
-   };
+   workflow: DeepPartial<Workflows>;
    should_simulate?: boolean;
-   mnemonic?: string;
-   address?: {
-      [key: string]: string;
-   };
    request?: {
-      headers: any;
-      body: {
-         [key: string]: any;
-      };
+      body?: Record<string, any>;
+      headers?: Record<string, any>;
    };
-   extra?: {
-      [key: string]: any;
-   };
+   [key: string]: any;
 };
