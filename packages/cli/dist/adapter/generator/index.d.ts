@@ -10,7 +10,7 @@ type Component = {
     is_dead_end: boolean;
     input: {
         key: string;
-        type: string;
+        type: string[];
         description: string;
         hidden?: boolean;
         required: boolean;

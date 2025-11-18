@@ -15,7 +15,7 @@ type Component = {
    is_dead_end: boolean;
    input: {
       key: string;
-      type: string;
+      type: string[];
       description: string;
       hidden?: boolean;
       required: boolean;
@@ -43,9 +43,9 @@ class Generator {
 
    private generateZodSchema = (component: Component) => {
       const fields = component.input;
-      const validations = fields.map((field) => {
+      const _fieldBaseValidation = (field: Component['input'][0], type: string) => {
          let baseValidation = '';
-         switch (field.type) {
+         switch (type) {
             case 'string':
                if (field.key.toLowerCase().includes('email')) {
                   baseValidation = 'z.email()';
@@ -94,7 +94,16 @@ class Generator {
          if (field.nullable) baseValidation += '.nullable()';
          if (!field.required) baseValidation += '.optional()';
 
-         return `      "${field.key}": ${baseValidation}`;
+         return baseValidation;
+      };
+
+      const validations = fields.map((field) => {
+         if (field.type.length === 1) {
+            return `      "${field.key}": ${_fieldBaseValidation(field, field.type[0])}`;
+         }
+
+         const _validations = field.type.map((entry) => _fieldBaseValidation(field, entry));
+         return `      "${field.key}": z.union([${_validations.join(', ')}])`;
       });
 
       return `
@@ -149,21 +158,30 @@ class Generator {
       fields: Component['input'] | Component['output'],
       interfaceName: string,
    ) => {
-      const fieldStrings = fields.map((field) => {
-         const optional = !field.required || field.nullable ? '?' : '';
-         const nullable = field.nullable ? ' | null' : '';
+      const _fieldType = (field: Component['input'][0] | Component['output'][0], type: string) => {
          let fieldType =
-            field.type === 'datetime'
+            type === 'datetime'
                ? 'string'
-               : field.type === 'object'
+               : type === 'object'
                  ? 'Record<string, any>'
-                 : field.type === 'array'
+                 : type === 'array'
                    ? 'any[]'
-                   : field.type;
+                   : type;
 
          if ('enum' in field && field.enum && field.enum.length > 0) {
             fieldType = field.enum.map((val) => `"${val}"`).join(' | ');
          }
+
+         return fieldType;
+      };
+
+      const fieldStrings = fields.map((field) => {
+         const optional = !field.required || field.nullable ? '?' : '';
+         const nullable = field.nullable ? ' | null' : '';
+
+         const fieldType = Array.isArray(field.type)
+            ? field.type.map((t) => _fieldType(field, t)).join(' | ')
+            : _fieldType(field, field.type);
 
          const defaultLine =
             'default' in field && field.default

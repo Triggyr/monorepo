@@ -7,10 +7,10 @@ export declare function loadConfig(): Promise<{
 }>;
 export declare function isRequired(input: string): true | "You must provide a value";
 export declare function collectInputFields(): Promise<{
+    type: any;
     default: any;
     enum: string[] | undefined;
     key: any;
-    type: any;
     description: any;
     required: any;
     nullable: any;

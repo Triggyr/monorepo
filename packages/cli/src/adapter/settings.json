@@ -1,6 +1,6 @@
 {
    "config_filename": "triggyr.config.js",
-   "field_types": ["string", "number", "object", "datetime", "array"],
+   "field_types": ["string", "boolean", "number", "object", "datetime", "array"],
    "component_types": [
       { "name": "Trigger", "value": "trigger" },
       { "name": "Action", "value": "action" },

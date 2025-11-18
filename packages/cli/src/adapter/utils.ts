@@ -69,7 +69,8 @@ export async function collectInputFields() {
             validate: isRequired,
          },
          {
-            type: 'list',
+            type: 'checkbox',
+            required: true,
             name: 'type',
             message: 'Type:',
             choices: field_types,
@@ -114,6 +115,7 @@ export async function collectInputFields() {
 
       const field = {
          ...answer,
+         type: answer.type.length === 1 ? answer.type[0] : answer.type,
          default: getDefault(answer.type, answer.default),
          enum: stringToArrayOrUndefined(answer.enum),
       };
