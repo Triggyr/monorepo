@@ -46,7 +46,7 @@ exports.default = new commander_1.Command('remove')
     const response = await graphql.update('components', { deleted_at: new Date().toISOString() }, ['id', 'type', 'sub_type'], {
         where: {
             id: {
-                _eq: answer.id,
+                _eq: answer.id ?? opts.id,
             },
         },
     });

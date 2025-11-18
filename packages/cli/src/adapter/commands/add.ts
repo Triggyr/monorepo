@@ -81,6 +81,7 @@ export default new Command('add')
 
       const component = {
          ...answers,
+         name: answers.name ?? opts.name,
          input,
          output,
       };

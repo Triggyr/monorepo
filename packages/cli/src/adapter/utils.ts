@@ -115,7 +115,6 @@ export async function collectInputFields() {
 
       const field = {
          ...answer,
-         type: answer.type.length === 1 ? answer.type[0] : answer.type,
          default: getDefault(answer.type, answer.default),
          enum: stringToArrayOrUndefined(answer.enum),
       };

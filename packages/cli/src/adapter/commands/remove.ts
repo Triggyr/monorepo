@@ -50,7 +50,7 @@ export default new Command('remove')
          {
             where: {
                id: {
-                  _eq: answer.id,
+                  _eq: answer.id ?? opts.id,
                },
             },
          },

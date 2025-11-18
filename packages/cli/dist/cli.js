@@ -11,6 +11,7 @@ const boxen_1 = __importDefault(require("boxen"));
 const add_1 = __importDefault(require("./adapter/commands/add"));
 const remove_1 = __importDefault(require("./adapter/commands/remove"));
 const update_1 = __importDefault(require("./adapter/commands/update"));
+const sync_1 = __importDefault(require("./adapter/commands/sync"));
 console.log((0, boxen_1.default)(chalk_1.default.cyan.bold('Triggyr internal workflow component CLI'), {
     padding: 1,
     margin: {
@@ -23,6 +24,7 @@ console.log((0, boxen_1.default)(chalk_1.default.cyan.bold('Triggyr internal wor
 const program = new commander_1.Command();
 program.name('triggyr').description(package_json_1.description).version(package_json_1.version);
 program.addCommand(add_1.default);
+program.addCommand(sync_1.default);
 program.addCommand(update_1.default);
 program.addCommand(remove_1.default);
 program.parse();

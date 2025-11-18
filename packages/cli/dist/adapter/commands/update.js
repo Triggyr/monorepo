@@ -16,7 +16,7 @@ exports.default = new commander_1.Command('update')
     .option('--id <id>', 'Component ID')
     .action(async (opts) => {
     const config = await (0, utils_1.loadConfig)();
-    const { id } = await inquirer_1.default.prompt([
+    const answers1 = await inquirer_1.default.prompt([
         {
             type: 'input',
             name: 'id',
@@ -26,6 +26,7 @@ exports.default = new commander_1.Command('update')
             validate: utils_1.isRequired,
         },
     ]);
+    const id = answers1.id ?? opts.id;
     const graphql = new graphql_1.default({
         host: config.connection.graphqlUrl,
         log_query: false,

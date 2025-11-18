@@ -78,6 +78,7 @@ exports.default = new commander_1.Command('add')
     });
     const component = {
         ...answers,
+        name: answers.name ?? opts.name,
         input,
         output,
     };

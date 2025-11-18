@@ -13,7 +13,7 @@ export default new Command('update')
    .action(async (opts) => {
       const config = await loadConfig();
 
-      const { id } = await inquirer.prompt([
+      const answers1 = await inquirer.prompt([
          {
             type: 'input',
             name: 'id',
@@ -23,6 +23,8 @@ export default new Command('update')
             validate: isRequired,
          },
       ]);
+
+      const id = answers1.id ?? opts.id;
 
       const graphql = new Graphql({
          host: config.connection.graphqlUrl,

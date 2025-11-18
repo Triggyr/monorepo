@@ -125,14 +125,14 @@ class Generator {
       const inputTypeRegex = /type Input = \{[^}]*\}/s;
       if (inputTypeRegex.test(existingContent)) {
          const newContent = updatedContent.replace(inputTypeRegex, newInputInterface);
-         if (newContent !== updatedContent) updatedContent = newContent;
+         if (newContent !== updatedContent) updatedContent = `\n${newContent}`;
       }
 
       // -- update Output type
       const outputTypeRegex = /type Output = \{[^}]*\}/s;
       if (outputTypeRegex.test(updatedContent)) {
          const newContent = updatedContent.replace(outputTypeRegex, newOutputInterface);
-         if (newContent !== updatedContent) updatedContent = newContent;
+         if (newContent !== updatedContent) updatedContent = `\n${newContent}`;
       }
 
       // -- update zod schema
@@ -140,6 +140,7 @@ class Generator {
          /export function validator\(input: Input\) \{[\s\S]*?return schema\.parse\(input\);\s*\}/;
       if (validateFunctionRegex.test(updatedContent)) {
          const newValidateFunction = `
+            \n
             export function validator(input: Input) {
                 ${newZodSchema}
 
@@ -248,8 +249,10 @@ class Generator {
         const component_id = '${component.id}';
 
         ${inputInterface}
+        \n
 
         ${outputInterface}
+        \n
 
         export function validator(input: Input) {
             ${this.generateZodSchema(component)}
