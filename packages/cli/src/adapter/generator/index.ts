@@ -215,14 +215,14 @@ class Generator {
       const triggerFns =
          component.type === 'trigger'
             ? `
-               export function init(input: Input, opts: ComponentOpts): Promise<boolean> {
+               export async function init(input: Input, opts: ComponentOpts): Promise<boolean> {
                   // TODO: function to set trigger for component
                   input = validator(input);
 
                   return false;
                }
 
-               export function stop(input: Input, opts: ComponentOpts): Promise<boolean> {
+               export async function stop(input: Input, opts: ComponentOpts): Promise<boolean> {
                   // TODO: function to kill trigger for component
                   input = validator(input);
                   
