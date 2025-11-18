@@ -236,8 +236,8 @@ class Generator {
         export default async function (input: Input, opts: ComponentOpts): Promise<Output | null> {
             // TODO: Implement the actual logic for ${component.name}
 
-            input = validator(input);
             const start = Date.now();
+            input = validator(input);
   
             ${fnBody}
         }
