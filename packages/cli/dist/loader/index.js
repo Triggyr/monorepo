@@ -143,15 +143,15 @@ class ComponentLoader {
             .filter((dirent) => dirent.isDirectory())
             .map((dirent) => dirent.name);
         for (const type of types) {
-            const type_path = path.join(this.componentsDir, type);
+            const type_path = path.join(base_dir, type);
             if (!fs.existsSync(type_path))
                 continue;
             const sub_types = fs
                 .readdirSync(type_path, { withFileTypes: true })
                 .filter((dirent) => dirent.isDirectory())
                 .map((dirent) => dirent.name);
-            for (const subType of sub_types) {
-                const subTypePath = path.join(type_path, subType);
+            for (const sub_type of sub_types) {
+                const subTypePath = path.join(type_path, sub_type);
                 const files = fs
                     .readdirSync(subTypePath)
                     .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
