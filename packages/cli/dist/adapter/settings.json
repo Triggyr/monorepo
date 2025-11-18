@@ -10,6 +10,7 @@
         { "name": "NFT", "value": "nft" },
         { "name": "Token", "value": "token" },
         { "name": "Utility", "value": "utility" },
+        { "name": "Conditional", "value": "conditional" },
         { "name": "Smart Contract", "value": "smart_contract" }
     ],
     "supported_blockchains": [

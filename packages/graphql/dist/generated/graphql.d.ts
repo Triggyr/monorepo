@@ -568,6 +568,10 @@ export type Mutation_Root = {
     delete_wallet_accounts?: Maybe<Wallet_Accounts_Mutation_Response>;
     /** delete single row from the table: "wallet_accounts" */
     delete_wallet_accounts_by_pk?: Maybe<Wallet_Accounts>;
+    /** delete data from the table: "workflow_edges" */
+    delete_workflow_edges?: Maybe<Workflow_Edges_Mutation_Response>;
+    /** delete single row from the table: "workflow_edges" */
+    delete_workflow_edges_by_pk?: Maybe<Workflow_Edges>;
     /** delete data from the table: "workflow_nodes" */
     delete_workflow_nodes?: Maybe<Workflow_Nodes_Mutation_Response>;
     /** delete single row from the table: "workflow_nodes" */
@@ -624,6 +628,10 @@ export type Mutation_Root = {
     insert_wallet_accounts?: Maybe<Wallet_Accounts_Mutation_Response>;
     /** insert a single row into the table: "wallet_accounts" */
     insert_wallet_accounts_one?: Maybe<Wallet_Accounts>;
+    /** insert data into the table: "workflow_edges" */
+    insert_workflow_edges?: Maybe<Workflow_Edges_Mutation_Response>;
+    /** insert a single row into the table: "workflow_edges" */
+    insert_workflow_edges_one?: Maybe<Workflow_Edges>;
     /** insert data into the table: "workflow_nodes" */
     insert_workflow_nodes?: Maybe<Workflow_Nodes_Mutation_Response>;
     /** insert a single row into the table: "workflow_nodes" */
@@ -700,6 +708,12 @@ export type Mutation_Root = {
     update_wallet_accounts_by_pk?: Maybe<Wallet_Accounts>;
     /** update multiples rows of table: "wallet_accounts" */
     update_wallet_accounts_many?: Maybe<Array<Maybe<Wallet_Accounts_Mutation_Response>>>;
+    /** update data of the table: "workflow_edges" */
+    update_workflow_edges?: Maybe<Workflow_Edges_Mutation_Response>;
+    /** update single row of the table: "workflow_edges" */
+    update_workflow_edges_by_pk?: Maybe<Workflow_Edges>;
+    /** update multiples rows of table: "workflow_edges" */
+    update_workflow_edges_many?: Maybe<Array<Maybe<Workflow_Edges_Mutation_Response>>>;
     /** update data of the table: "workflow_nodes" */
     update_workflow_nodes?: Maybe<Workflow_Nodes_Mutation_Response>;
     /** update single row of the table: "workflow_nodes" */
@@ -803,6 +817,14 @@ export type Mutation_RootDelete_Wallet_AccountsArgs = {
 };
 /** mutation root */
 export type Mutation_RootDelete_Wallet_Accounts_By_PkArgs = {
+    id: Scalars['uuid']['input'];
+};
+/** mutation root */
+export type Mutation_RootDelete_Workflow_EdgesArgs = {
+    where: Workflow_Edges_Bool_Exp;
+};
+/** mutation root */
+export type Mutation_RootDelete_Workflow_Edges_By_PkArgs = {
     id: Scalars['uuid']['input'];
 };
 /** mutation root */
@@ -936,6 +958,16 @@ export type Mutation_RootInsert_Wallet_AccountsArgs = {
 export type Mutation_RootInsert_Wallet_Accounts_OneArgs = {
     object: Wallet_Accounts_Insert_Input;
     on_conflict?: InputMaybe<Wallet_Accounts_On_Conflict>;
+};
+/** mutation root */
+export type Mutation_RootInsert_Workflow_EdgesArgs = {
+    objects: Array<Workflow_Edges_Insert_Input>;
+    on_conflict?: InputMaybe<Workflow_Edges_On_Conflict>;
+};
+/** mutation root */
+export type Mutation_RootInsert_Workflow_Edges_OneArgs = {
+    object: Workflow_Edges_Insert_Input;
+    on_conflict?: InputMaybe<Workflow_Edges_On_Conflict>;
 };
 /** mutation root */
 export type Mutation_RootInsert_Workflow_NodesArgs = {
@@ -1222,11 +1254,36 @@ export type Mutation_RootUpdate_Wallet_Accounts_ManyArgs = {
     updates: Array<Wallet_Accounts_Updates>;
 };
 /** mutation root */
+export type Mutation_RootUpdate_Workflow_EdgesArgs = {
+    _append?: InputMaybe<Workflow_Edges_Append_Input>;
+    _delete_at_path?: InputMaybe<Workflow_Edges_Delete_At_Path_Input>;
+    _delete_elem?: InputMaybe<Workflow_Edges_Delete_Elem_Input>;
+    _delete_key?: InputMaybe<Workflow_Edges_Delete_Key_Input>;
+    _prepend?: InputMaybe<Workflow_Edges_Prepend_Input>;
+    _set?: InputMaybe<Workflow_Edges_Set_Input>;
+    where: Workflow_Edges_Bool_Exp;
+};
+/** mutation root */
+export type Mutation_RootUpdate_Workflow_Edges_By_PkArgs = {
+    _append?: InputMaybe<Workflow_Edges_Append_Input>;
+    _delete_at_path?: InputMaybe<Workflow_Edges_Delete_At_Path_Input>;
+    _delete_elem?: InputMaybe<Workflow_Edges_Delete_Elem_Input>;
+    _delete_key?: InputMaybe<Workflow_Edges_Delete_Key_Input>;
+    _prepend?: InputMaybe<Workflow_Edges_Prepend_Input>;
+    _set?: InputMaybe<Workflow_Edges_Set_Input>;
+    pk_columns: Workflow_Edges_Pk_Columns_Input;
+};
+/** mutation root */
+export type Mutation_RootUpdate_Workflow_Edges_ManyArgs = {
+    updates: Array<Workflow_Edges_Updates>;
+};
+/** mutation root */
 export type Mutation_RootUpdate_Workflow_NodesArgs = {
     _append?: InputMaybe<Workflow_Nodes_Append_Input>;
     _delete_at_path?: InputMaybe<Workflow_Nodes_Delete_At_Path_Input>;
     _delete_elem?: InputMaybe<Workflow_Nodes_Delete_Elem_Input>;
     _delete_key?: InputMaybe<Workflow_Nodes_Delete_Key_Input>;
+    _inc?: InputMaybe<Workflow_Nodes_Inc_Input>;
     _prepend?: InputMaybe<Workflow_Nodes_Prepend_Input>;
     _set?: InputMaybe<Workflow_Nodes_Set_Input>;
     where: Workflow_Nodes_Bool_Exp;
@@ -1237,6 +1294,7 @@ export type Mutation_RootUpdate_Workflow_Nodes_By_PkArgs = {
     _delete_at_path?: InputMaybe<Workflow_Nodes_Delete_At_Path_Input>;
     _delete_elem?: InputMaybe<Workflow_Nodes_Delete_Elem_Input>;
     _delete_key?: InputMaybe<Workflow_Nodes_Delete_Key_Input>;
+    _inc?: InputMaybe<Workflow_Nodes_Inc_Input>;
     _prepend?: InputMaybe<Workflow_Nodes_Prepend_Input>;
     _set?: InputMaybe<Workflow_Nodes_Set_Input>;
     pk_columns: Workflow_Nodes_Pk_Columns_Input;
@@ -1732,6 +1790,12 @@ export type Query_Root = {
     wallet_accounts_aggregate: Wallet_Accounts_Aggregate;
     /** fetch data from the table: "wallet_accounts" using primary key columns */
     wallet_accounts_by_pk?: Maybe<Wallet_Accounts>;
+    /** fetch data from the table: "workflow_edges" */
+    workflow_edges: Array<Workflow_Edges>;
+    /** fetch aggregated fields from the table: "workflow_edges" */
+    workflow_edges_aggregate: Workflow_Edges_Aggregate;
+    /** fetch data from the table: "workflow_edges" using primary key columns */
+    workflow_edges_by_pk?: Maybe<Workflow_Edges>;
     /** An array relationship */
     workflow_nodes: Array<Workflow_Nodes>;
     /** An aggregate relationship */
@@ -1925,6 +1989,23 @@ export type Query_RootWallet_Accounts_AggregateArgs = {
     where?: InputMaybe<Wallet_Accounts_Bool_Exp>;
 };
 export type Query_RootWallet_Accounts_By_PkArgs = {
+    id: Scalars['uuid']['input'];
+};
+export type Query_RootWorkflow_EdgesArgs = {
+    distinct_on?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<Workflow_Edges_Order_By>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
+};
+export type Query_RootWorkflow_Edges_AggregateArgs = {
+    distinct_on?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<Workflow_Edges_Order_By>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
+};
+export type Query_RootWorkflow_Edges_By_PkArgs = {
     id: Scalars['uuid']['input'];
 };
 export type Query_RootWorkflow_NodesArgs = {
@@ -2388,6 +2469,14 @@ export type Subscription_Root = {
     wallet_accounts_by_pk?: Maybe<Wallet_Accounts>;
     /** fetch data from the table in a streaming manner: "wallet_accounts" */
     wallet_accounts_stream: Array<Wallet_Accounts>;
+    /** fetch data from the table: "workflow_edges" */
+    workflow_edges: Array<Workflow_Edges>;
+    /** fetch aggregated fields from the table: "workflow_edges" */
+    workflow_edges_aggregate: Workflow_Edges_Aggregate;
+    /** fetch data from the table: "workflow_edges" using primary key columns */
+    workflow_edges_by_pk?: Maybe<Workflow_Edges>;
+    /** fetch data from the table in a streaming manner: "workflow_edges" */
+    workflow_edges_stream: Array<Workflow_Edges>;
     /** An array relationship */
     workflow_nodes: Array<Workflow_Nodes>;
     /** An aggregate relationship */
@@ -2640,6 +2729,28 @@ export type Subscription_RootWallet_Accounts_StreamArgs = {
     batch_size: Scalars['Int']['input'];
     cursor: Array<InputMaybe<Wallet_Accounts_Stream_Cursor_Input>>;
     where?: InputMaybe<Wallet_Accounts_Bool_Exp>;
+};
+export type Subscription_RootWorkflow_EdgesArgs = {
+    distinct_on?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<Workflow_Edges_Order_By>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
+};
+export type Subscription_RootWorkflow_Edges_AggregateArgs = {
+    distinct_on?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<Workflow_Edges_Order_By>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
+};
+export type Subscription_RootWorkflow_Edges_By_PkArgs = {
+    id: Scalars['uuid']['input'];
+};
+export type Subscription_RootWorkflow_Edges_StreamArgs = {
+    batch_size: Scalars['Int']['input'];
+    cursor: Array<InputMaybe<Workflow_Edges_Stream_Cursor_Input>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
 };
 export type Subscription_RootWorkflow_NodesArgs = {
     distinct_on?: InputMaybe<Array<Workflow_Nodes_Select_Column>>;
@@ -4720,6 +4831,289 @@ export type Wallet_Accounts_Updates = {
     /** filter the rows which have to be updated */
     where: Wallet_Accounts_Bool_Exp;
 };
+/** columns and relationships of "workflow_edges" */
+export type Workflow_Edges = {
+    created_at: Scalars['timestamptz']['output'];
+    deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+    id: Scalars['uuid']['output'];
+    metadata?: Maybe<Scalars['jsonb']['output']>;
+    source_handle?: Maybe<Scalars['String']['output']>;
+    source_node_identifier: Scalars['String']['output'];
+    target_handle?: Maybe<Scalars['String']['output']>;
+    target_node_identifier: Scalars['String']['output'];
+    updated_at: Scalars['timestamptz']['output'];
+    /** An object relationship */
+    workflow: Workflows;
+    workflow_id: Scalars['uuid']['output'];
+};
+/** columns and relationships of "workflow_edges" */
+export type Workflow_EdgesMetadataArgs = {
+    path?: InputMaybe<Scalars['String']['input']>;
+};
+/** aggregated selection of "workflow_edges" */
+export type Workflow_Edges_Aggregate = {
+    aggregate?: Maybe<Workflow_Edges_Aggregate_Fields>;
+    nodes: Array<Workflow_Edges>;
+};
+export type Workflow_Edges_Aggregate_Bool_Exp = {
+    count?: InputMaybe<Workflow_Edges_Aggregate_Bool_Exp_Count>;
+};
+export type Workflow_Edges_Aggregate_Bool_Exp_Count = {
+    arguments?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    distinct?: InputMaybe<Scalars['Boolean']['input']>;
+    filter?: InputMaybe<Workflow_Edges_Bool_Exp>;
+    predicate: Int_Comparison_Exp;
+};
+/** aggregate fields of "workflow_edges" */
+export type Workflow_Edges_Aggregate_Fields = {
+    count: Scalars['Int']['output'];
+    max?: Maybe<Workflow_Edges_Max_Fields>;
+    min?: Maybe<Workflow_Edges_Min_Fields>;
+};
+/** aggregate fields of "workflow_edges" */
+export type Workflow_Edges_Aggregate_FieldsCountArgs = {
+    columns?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+/** order by aggregate values of table "workflow_edges" */
+export type Workflow_Edges_Aggregate_Order_By = {
+    count?: InputMaybe<Order_By>;
+    max?: InputMaybe<Workflow_Edges_Max_Order_By>;
+    min?: InputMaybe<Workflow_Edges_Min_Order_By>;
+};
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Workflow_Edges_Append_Input = {
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+};
+/** input type for inserting array relation for remote table "workflow_edges" */
+export type Workflow_Edges_Arr_Rel_Insert_Input = {
+    data: Array<Workflow_Edges_Insert_Input>;
+    /** upsert condition */
+    on_conflict?: InputMaybe<Workflow_Edges_On_Conflict>;
+};
+/** Boolean expression to filter rows from the table "workflow_edges". All fields are combined with a logical 'AND'. */
+export type Workflow_Edges_Bool_Exp = {
+    _and?: InputMaybe<Array<Workflow_Edges_Bool_Exp>>;
+    _not?: InputMaybe<Workflow_Edges_Bool_Exp>;
+    _or?: InputMaybe<Array<Workflow_Edges_Bool_Exp>>;
+    created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+    deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+    id?: InputMaybe<Uuid_Comparison_Exp>;
+    metadata?: InputMaybe<Jsonb_Comparison_Exp>;
+    source_handle?: InputMaybe<String_Comparison_Exp>;
+    source_node_identifier?: InputMaybe<String_Comparison_Exp>;
+    target_handle?: InputMaybe<String_Comparison_Exp>;
+    target_node_identifier?: InputMaybe<String_Comparison_Exp>;
+    updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+    workflow?: InputMaybe<Workflows_Bool_Exp>;
+    workflow_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+/** unique or primary key constraints on table "workflow_edges" */
+export type Workflow_Edges_Constraint = 
+/** unique or primary key constraint on columns "id" */
+'workflow_edges_pkey';
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Workflow_Edges_Delete_At_Path_Input = {
+    metadata?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Workflow_Edges_Delete_Elem_Input = {
+    metadata?: InputMaybe<Scalars['Int']['input']>;
+};
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Workflow_Edges_Delete_Key_Input = {
+    metadata?: InputMaybe<Scalars['String']['input']>;
+};
+/** input type for inserting data into table "workflow_edges" */
+export type Workflow_Edges_Insert_Input = {
+    created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    id?: InputMaybe<Scalars['uuid']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    source_handle?: InputMaybe<Scalars['String']['input']>;
+    source_node_identifier?: InputMaybe<Scalars['String']['input']>;
+    target_handle?: InputMaybe<Scalars['String']['input']>;
+    target_node_identifier?: InputMaybe<Scalars['String']['input']>;
+    updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    workflow?: InputMaybe<Workflows_Obj_Rel_Insert_Input>;
+    workflow_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** aggregate max on columns */
+export type Workflow_Edges_Max_Fields = {
+    created_at?: Maybe<Scalars['timestamptz']['output']>;
+    deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+    id?: Maybe<Scalars['uuid']['output']>;
+    source_handle?: Maybe<Scalars['String']['output']>;
+    source_node_identifier?: Maybe<Scalars['String']['output']>;
+    target_handle?: Maybe<Scalars['String']['output']>;
+    target_node_identifier?: Maybe<Scalars['String']['output']>;
+    updated_at?: Maybe<Scalars['timestamptz']['output']>;
+    workflow_id?: Maybe<Scalars['uuid']['output']>;
+};
+/** order by max() on columns of table "workflow_edges" */
+export type Workflow_Edges_Max_Order_By = {
+    created_at?: InputMaybe<Order_By>;
+    deleted_at?: InputMaybe<Order_By>;
+    id?: InputMaybe<Order_By>;
+    source_handle?: InputMaybe<Order_By>;
+    source_node_identifier?: InputMaybe<Order_By>;
+    target_handle?: InputMaybe<Order_By>;
+    target_node_identifier?: InputMaybe<Order_By>;
+    updated_at?: InputMaybe<Order_By>;
+    workflow_id?: InputMaybe<Order_By>;
+};
+/** aggregate min on columns */
+export type Workflow_Edges_Min_Fields = {
+    created_at?: Maybe<Scalars['timestamptz']['output']>;
+    deleted_at?: Maybe<Scalars['timestamptz']['output']>;
+    id?: Maybe<Scalars['uuid']['output']>;
+    source_handle?: Maybe<Scalars['String']['output']>;
+    source_node_identifier?: Maybe<Scalars['String']['output']>;
+    target_handle?: Maybe<Scalars['String']['output']>;
+    target_node_identifier?: Maybe<Scalars['String']['output']>;
+    updated_at?: Maybe<Scalars['timestamptz']['output']>;
+    workflow_id?: Maybe<Scalars['uuid']['output']>;
+};
+/** order by min() on columns of table "workflow_edges" */
+export type Workflow_Edges_Min_Order_By = {
+    created_at?: InputMaybe<Order_By>;
+    deleted_at?: InputMaybe<Order_By>;
+    id?: InputMaybe<Order_By>;
+    source_handle?: InputMaybe<Order_By>;
+    source_node_identifier?: InputMaybe<Order_By>;
+    target_handle?: InputMaybe<Order_By>;
+    target_node_identifier?: InputMaybe<Order_By>;
+    updated_at?: InputMaybe<Order_By>;
+    workflow_id?: InputMaybe<Order_By>;
+};
+/** response of any mutation on the table "workflow_edges" */
+export type Workflow_Edges_Mutation_Response = {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']['output'];
+    /** data from the rows affected by the mutation */
+    returning: Array<Workflow_Edges>;
+};
+/** on_conflict condition type for table "workflow_edges" */
+export type Workflow_Edges_On_Conflict = {
+    constraint: Workflow_Edges_Constraint;
+    update_columns?: Array<Workflow_Edges_Update_Column>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
+};
+/** Ordering options when selecting data from "workflow_edges". */
+export type Workflow_Edges_Order_By = {
+    created_at?: InputMaybe<Order_By>;
+    deleted_at?: InputMaybe<Order_By>;
+    id?: InputMaybe<Order_By>;
+    metadata?: InputMaybe<Order_By>;
+    source_handle?: InputMaybe<Order_By>;
+    source_node_identifier?: InputMaybe<Order_By>;
+    target_handle?: InputMaybe<Order_By>;
+    target_node_identifier?: InputMaybe<Order_By>;
+    updated_at?: InputMaybe<Order_By>;
+    workflow?: InputMaybe<Workflows_Order_By>;
+    workflow_id?: InputMaybe<Order_By>;
+};
+/** primary key columns input for table: workflow_edges */
+export type Workflow_Edges_Pk_Columns_Input = {
+    id: Scalars['uuid']['input'];
+};
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Workflow_Edges_Prepend_Input = {
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+};
+/** select columns of table "workflow_edges" */
+export type Workflow_Edges_Select_Column = 
+/** column name */
+'created_at'
+/** column name */
+ | 'deleted_at'
+/** column name */
+ | 'id'
+/** column name */
+ | 'metadata'
+/** column name */
+ | 'source_handle'
+/** column name */
+ | 'source_node_identifier'
+/** column name */
+ | 'target_handle'
+/** column name */
+ | 'target_node_identifier'
+/** column name */
+ | 'updated_at'
+/** column name */
+ | 'workflow_id';
+/** input type for updating data in table "workflow_edges" */
+export type Workflow_Edges_Set_Input = {
+    created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    id?: InputMaybe<Scalars['uuid']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    source_handle?: InputMaybe<Scalars['String']['input']>;
+    source_node_identifier?: InputMaybe<Scalars['String']['input']>;
+    target_handle?: InputMaybe<Scalars['String']['input']>;
+    target_node_identifier?: InputMaybe<Scalars['String']['input']>;
+    updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    workflow_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** Streaming cursor of the table "workflow_edges" */
+export type Workflow_Edges_Stream_Cursor_Input = {
+    /** Stream column input with initial value */
+    initial_value: Workflow_Edges_Stream_Cursor_Value_Input;
+    /** cursor ordering */
+    ordering?: InputMaybe<Cursor_Ordering>;
+};
+/** Initial value of the column from where the streaming should start */
+export type Workflow_Edges_Stream_Cursor_Value_Input = {
+    created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    id?: InputMaybe<Scalars['uuid']['input']>;
+    metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    source_handle?: InputMaybe<Scalars['String']['input']>;
+    source_node_identifier?: InputMaybe<Scalars['String']['input']>;
+    target_handle?: InputMaybe<Scalars['String']['input']>;
+    target_node_identifier?: InputMaybe<Scalars['String']['input']>;
+    updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+    workflow_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** update columns of table "workflow_edges" */
+export type Workflow_Edges_Update_Column = 
+/** column name */
+'created_at'
+/** column name */
+ | 'deleted_at'
+/** column name */
+ | 'id'
+/** column name */
+ | 'metadata'
+/** column name */
+ | 'source_handle'
+/** column name */
+ | 'source_node_identifier'
+/** column name */
+ | 'target_handle'
+/** column name */
+ | 'target_node_identifier'
+/** column name */
+ | 'updated_at'
+/** column name */
+ | 'workflow_id';
+export type Workflow_Edges_Updates = {
+    /** append existing jsonb value of filtered columns with new jsonb value */
+    _append?: InputMaybe<Workflow_Edges_Append_Input>;
+    /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+    _delete_at_path?: InputMaybe<Workflow_Edges_Delete_At_Path_Input>;
+    /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+    _delete_elem?: InputMaybe<Workflow_Edges_Delete_Elem_Input>;
+    /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+    _delete_key?: InputMaybe<Workflow_Edges_Delete_Key_Input>;
+    /** prepend existing jsonb value of filtered columns with new jsonb value */
+    _prepend?: InputMaybe<Workflow_Edges_Prepend_Input>;
+    /** sets the columns of the filtered rows to the given values */
+    _set?: InputMaybe<Workflow_Edges_Set_Input>;
+    /** filter the rows which have to be updated */
+    where: Workflow_Edges_Bool_Exp;
+};
 /** columns and relationships of "workflow_nodes" */
 export type Workflow_Nodes = {
     /** An object relationship */
@@ -4732,6 +5126,8 @@ export type Workflow_Nodes = {
     input: Scalars['jsonb']['output'];
     label?: Maybe<Scalars['String']['output']>;
     metadata?: Maybe<Scalars['jsonb']['output']>;
+    position_x: Scalars['numeric']['output'];
+    position_y: Scalars['numeric']['output'];
     updated_at: Scalars['timestamptz']['output'];
     /** An object relationship */
     workflow: Workflows;
@@ -4761,9 +5157,17 @@ export type Workflow_Nodes_Aggregate_Bool_Exp_Count = {
 };
 /** aggregate fields of "workflow_nodes" */
 export type Workflow_Nodes_Aggregate_Fields = {
+    avg?: Maybe<Workflow_Nodes_Avg_Fields>;
     count: Scalars['Int']['output'];
     max?: Maybe<Workflow_Nodes_Max_Fields>;
     min?: Maybe<Workflow_Nodes_Min_Fields>;
+    stddev?: Maybe<Workflow_Nodes_Stddev_Fields>;
+    stddev_pop?: Maybe<Workflow_Nodes_Stddev_Pop_Fields>;
+    stddev_samp?: Maybe<Workflow_Nodes_Stddev_Samp_Fields>;
+    sum?: Maybe<Workflow_Nodes_Sum_Fields>;
+    var_pop?: Maybe<Workflow_Nodes_Var_Pop_Fields>;
+    var_samp?: Maybe<Workflow_Nodes_Var_Samp_Fields>;
+    variance?: Maybe<Workflow_Nodes_Variance_Fields>;
 };
 /** aggregate fields of "workflow_nodes" */
 export type Workflow_Nodes_Aggregate_FieldsCountArgs = {
@@ -4772,9 +5176,17 @@ export type Workflow_Nodes_Aggregate_FieldsCountArgs = {
 };
 /** order by aggregate values of table "workflow_nodes" */
 export type Workflow_Nodes_Aggregate_Order_By = {
+    avg?: InputMaybe<Workflow_Nodes_Avg_Order_By>;
     count?: InputMaybe<Order_By>;
     max?: InputMaybe<Workflow_Nodes_Max_Order_By>;
     min?: InputMaybe<Workflow_Nodes_Min_Order_By>;
+    stddev?: InputMaybe<Workflow_Nodes_Stddev_Order_By>;
+    stddev_pop?: InputMaybe<Workflow_Nodes_Stddev_Pop_Order_By>;
+    stddev_samp?: InputMaybe<Workflow_Nodes_Stddev_Samp_Order_By>;
+    sum?: InputMaybe<Workflow_Nodes_Sum_Order_By>;
+    var_pop?: InputMaybe<Workflow_Nodes_Var_Pop_Order_By>;
+    var_samp?: InputMaybe<Workflow_Nodes_Var_Samp_Order_By>;
+    variance?: InputMaybe<Workflow_Nodes_Variance_Order_By>;
 };
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Workflow_Nodes_Append_Input = {
@@ -4786,6 +5198,16 @@ export type Workflow_Nodes_Arr_Rel_Insert_Input = {
     data: Array<Workflow_Nodes_Insert_Input>;
     /** upsert condition */
     on_conflict?: InputMaybe<Workflow_Nodes_On_Conflict>;
+};
+/** aggregate avg on columns */
+export type Workflow_Nodes_Avg_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by avg() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Avg_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
 };
 /** Boolean expression to filter rows from the table "workflow_nodes". All fields are combined with a logical 'AND'. */
 export type Workflow_Nodes_Bool_Exp = {
@@ -4801,6 +5223,8 @@ export type Workflow_Nodes_Bool_Exp = {
     input?: InputMaybe<Jsonb_Comparison_Exp>;
     label?: InputMaybe<String_Comparison_Exp>;
     metadata?: InputMaybe<Jsonb_Comparison_Exp>;
+    position_x?: InputMaybe<Numeric_Comparison_Exp>;
+    position_y?: InputMaybe<Numeric_Comparison_Exp>;
     updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
     workflow?: InputMaybe<Workflows_Bool_Exp>;
     workflow_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -4824,6 +5248,11 @@ export type Workflow_Nodes_Delete_Key_Input = {
     input?: InputMaybe<Scalars['String']['input']>;
     metadata?: InputMaybe<Scalars['String']['input']>;
 };
+/** input type for incrementing numeric columns in table "workflow_nodes" */
+export type Workflow_Nodes_Inc_Input = {
+    position_x?: InputMaybe<Scalars['numeric']['input']>;
+    position_y?: InputMaybe<Scalars['numeric']['input']>;
+};
 /** input type for inserting data into table "workflow_nodes" */
 export type Workflow_Nodes_Insert_Input = {
     component?: InputMaybe<Components_Obj_Rel_Insert_Input>;
@@ -4835,6 +5264,8 @@ export type Workflow_Nodes_Insert_Input = {
     input?: InputMaybe<Scalars['jsonb']['input']>;
     label?: InputMaybe<Scalars['String']['input']>;
     metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    position_x?: InputMaybe<Scalars['numeric']['input']>;
+    position_y?: InputMaybe<Scalars['numeric']['input']>;
     updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
     workflow?: InputMaybe<Workflows_Obj_Rel_Insert_Input>;
     workflow_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -4847,6 +5278,8 @@ export type Workflow_Nodes_Max_Fields = {
     description?: Maybe<Scalars['String']['output']>;
     id?: Maybe<Scalars['uuid']['output']>;
     label?: Maybe<Scalars['String']['output']>;
+    position_x?: Maybe<Scalars['numeric']['output']>;
+    position_y?: Maybe<Scalars['numeric']['output']>;
     updated_at?: Maybe<Scalars['timestamptz']['output']>;
     workflow_id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -4858,6 +5291,8 @@ export type Workflow_Nodes_Max_Order_By = {
     description?: InputMaybe<Order_By>;
     id?: InputMaybe<Order_By>;
     label?: InputMaybe<Order_By>;
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
     updated_at?: InputMaybe<Order_By>;
     workflow_id?: InputMaybe<Order_By>;
 };
@@ -4869,6 +5304,8 @@ export type Workflow_Nodes_Min_Fields = {
     description?: Maybe<Scalars['String']['output']>;
     id?: Maybe<Scalars['uuid']['output']>;
     label?: Maybe<Scalars['String']['output']>;
+    position_x?: Maybe<Scalars['numeric']['output']>;
+    position_y?: Maybe<Scalars['numeric']['output']>;
     updated_at?: Maybe<Scalars['timestamptz']['output']>;
     workflow_id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -4880,6 +5317,8 @@ export type Workflow_Nodes_Min_Order_By = {
     description?: InputMaybe<Order_By>;
     id?: InputMaybe<Order_By>;
     label?: InputMaybe<Order_By>;
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
     updated_at?: InputMaybe<Order_By>;
     workflow_id?: InputMaybe<Order_By>;
 };
@@ -4907,6 +5346,8 @@ export type Workflow_Nodes_Order_By = {
     input?: InputMaybe<Order_By>;
     label?: InputMaybe<Order_By>;
     metadata?: InputMaybe<Order_By>;
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
     updated_at?: InputMaybe<Order_By>;
     workflow?: InputMaybe<Workflows_Order_By>;
     workflow_id?: InputMaybe<Order_By>;
@@ -4939,6 +5380,10 @@ export type Workflow_Nodes_Select_Column =
 /** column name */
  | 'metadata'
 /** column name */
+ | 'position_x'
+/** column name */
+ | 'position_y'
+/** column name */
  | 'updated_at'
 /** column name */
  | 'workflow_id';
@@ -4952,8 +5397,40 @@ export type Workflow_Nodes_Set_Input = {
     input?: InputMaybe<Scalars['jsonb']['input']>;
     label?: InputMaybe<Scalars['String']['input']>;
     metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    position_x?: InputMaybe<Scalars['numeric']['input']>;
+    position_y?: InputMaybe<Scalars['numeric']['input']>;
     updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
     workflow_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** aggregate stddev on columns */
+export type Workflow_Nodes_Stddev_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by stddev() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Stddev_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
+};
+/** aggregate stddev_pop on columns */
+export type Workflow_Nodes_Stddev_Pop_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by stddev_pop() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Stddev_Pop_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
+};
+/** aggregate stddev_samp on columns */
+export type Workflow_Nodes_Stddev_Samp_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by stddev_samp() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Stddev_Samp_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
 };
 /** Streaming cursor of the table "workflow_nodes" */
 export type Workflow_Nodes_Stream_Cursor_Input = {
@@ -4972,8 +5449,20 @@ export type Workflow_Nodes_Stream_Cursor_Value_Input = {
     input?: InputMaybe<Scalars['jsonb']['input']>;
     label?: InputMaybe<Scalars['String']['input']>;
     metadata?: InputMaybe<Scalars['jsonb']['input']>;
+    position_x?: InputMaybe<Scalars['numeric']['input']>;
+    position_y?: InputMaybe<Scalars['numeric']['input']>;
     updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
     workflow_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+/** aggregate sum on columns */
+export type Workflow_Nodes_Sum_Fields = {
+    position_x?: Maybe<Scalars['numeric']['output']>;
+    position_y?: Maybe<Scalars['numeric']['output']>;
+};
+/** order by sum() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Sum_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
 };
 /** update columns of table "workflow_nodes" */
 export type Workflow_Nodes_Update_Column = 
@@ -4994,6 +5483,10 @@ export type Workflow_Nodes_Update_Column =
 /** column name */
  | 'metadata'
 /** column name */
+ | 'position_x'
+/** column name */
+ | 'position_y'
+/** column name */
  | 'updated_at'
 /** column name */
  | 'workflow_id';
@@ -5006,12 +5499,44 @@ export type Workflow_Nodes_Updates = {
     _delete_elem?: InputMaybe<Workflow_Nodes_Delete_Elem_Input>;
     /** delete key/value pair or string element. key/value pairs are matched based on their key value */
     _delete_key?: InputMaybe<Workflow_Nodes_Delete_Key_Input>;
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: InputMaybe<Workflow_Nodes_Inc_Input>;
     /** prepend existing jsonb value of filtered columns with new jsonb value */
     _prepend?: InputMaybe<Workflow_Nodes_Prepend_Input>;
     /** sets the columns of the filtered rows to the given values */
     _set?: InputMaybe<Workflow_Nodes_Set_Input>;
     /** filter the rows which have to be updated */
     where: Workflow_Nodes_Bool_Exp;
+};
+/** aggregate var_pop on columns */
+export type Workflow_Nodes_Var_Pop_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by var_pop() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Var_Pop_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
+};
+/** aggregate var_samp on columns */
+export type Workflow_Nodes_Var_Samp_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by var_samp() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Var_Samp_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
+};
+/** aggregate variance on columns */
+export type Workflow_Nodes_Variance_Fields = {
+    position_x?: Maybe<Scalars['Float']['output']>;
+    position_y?: Maybe<Scalars['Float']['output']>;
+};
+/** order by variance() on columns of table "workflow_nodes" */
+export type Workflow_Nodes_Variance_Order_By = {
+    position_x?: InputMaybe<Order_By>;
+    position_y?: InputMaybe<Order_By>;
 };
 /** columns and relationships of "workflow_runs" */
 export type Workflow_Runs = {
@@ -5606,6 +6131,10 @@ export type Workflows = {
     created_at: Scalars['timestamptz']['output'];
     deleted_at?: Maybe<Scalars['timestamptz']['output']>;
     description?: Maybe<Scalars['String']['output']>;
+    /** An array relationship */
+    edges: Array<Workflow_Edges>;
+    /** An aggregate relationship */
+    edges_aggregate: Workflow_Edges_Aggregate;
     id: Scalars['uuid']['output'];
     metadata?: Maybe<Scalars['jsonb']['output']>;
     name: Scalars['String']['output'];
@@ -5624,6 +6153,22 @@ export type Workflows = {
     /** An object relationship */
     user: Users;
     user_id: Scalars['uuid']['output'];
+};
+/** columns and relationships of "workflows" */
+export type WorkflowsEdgesArgs = {
+    distinct_on?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<Workflow_Edges_Order_By>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
+};
+/** columns and relationships of "workflows" */
+export type WorkflowsEdges_AggregateArgs = {
+    distinct_on?: InputMaybe<Array<Workflow_Edges_Select_Column>>;
+    limit?: InputMaybe<Scalars['Int']['input']>;
+    offset?: InputMaybe<Scalars['Int']['input']>;
+    order_by?: InputMaybe<Array<Workflow_Edges_Order_By>>;
+    where?: InputMaybe<Workflow_Edges_Bool_Exp>;
 };
 /** columns and relationships of "workflows" */
 export type WorkflowsMetadataArgs = {
@@ -5710,6 +6255,8 @@ export type Workflows_Bool_Exp = {
     created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
     deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
     description?: InputMaybe<String_Comparison_Exp>;
+    edges?: InputMaybe<Workflow_Edges_Bool_Exp>;
+    edges_aggregate?: InputMaybe<Workflow_Edges_Aggregate_Bool_Exp>;
     id?: InputMaybe<Uuid_Comparison_Exp>;
     metadata?: InputMaybe<Jsonb_Comparison_Exp>;
     name?: InputMaybe<String_Comparison_Exp>;
@@ -5744,6 +6291,7 @@ export type Workflows_Insert_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']['input']>;
     deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
     description?: InputMaybe<Scalars['String']['input']>;
+    edges?: InputMaybe<Workflow_Edges_Arr_Rel_Insert_Input>;
     id?: InputMaybe<Scalars['uuid']['input']>;
     metadata?: InputMaybe<Scalars['jsonb']['input']>;
     name?: InputMaybe<Scalars['String']['input']>;
@@ -5823,6 +6371,7 @@ export type Workflows_Order_By = {
     created_at?: InputMaybe<Order_By>;
     deleted_at?: InputMaybe<Order_By>;
     description?: InputMaybe<Order_By>;
+    edges_aggregate?: InputMaybe<Workflow_Edges_Aggregate_Order_By>;
     id?: InputMaybe<Order_By>;
     metadata?: InputMaybe<Order_By>;
     name?: InputMaybe<Order_By>;
