@@ -5,7 +5,7 @@ import type { ComponentOpts, DeepPartial } from '../adapter/types';
 import Graphql from '@triggyr/graphql';
 import { loadConfig } from '../adapter/utils';
 
-type Handler<I = any, O = any> = (input: I, opts: ComponentOpts) => Promise<O>;
+type Handler<I = any, O = any> = (input: I, opts: ComponentOpts) => Promise<O | null>;
 type InitFn<I = any> = (input: I, opts: ComponentOpts) => Promise<boolean>;
 type StopFn<I = any> = (input: I, opts: ComponentOpts) => Promise<boolean>;
 type ValidatorFn<I = any> = (input: I) => I;
@@ -25,7 +25,7 @@ class Component<I = any, O = any> {
       private component_id: string,
    ) {}
 
-   async run(input: I, opts: ComponentOpts): Promise<O> {
+   async run(input: I, opts: ComponentOpts): Promise<O | null> {
       return this.module.default(input, opts);
    }
 

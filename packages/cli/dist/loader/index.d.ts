@@ -1,7 +1,7 @@
 import type { Components } from '@triggyr/graphql';
 import type { ComponentOpts, DeepPartial } from '../adapter/types';
 import Graphql from '@triggyr/graphql';
-type Handler<I = any, O = any> = (input: I, opts: ComponentOpts) => Promise<O>;
+type Handler<I = any, O = any> = (input: I, opts: ComponentOpts) => Promise<O | null>;
 type InitFn<I = any> = (input: I, opts: ComponentOpts) => Promise<boolean>;
 type StopFn<I = any> = (input: I, opts: ComponentOpts) => Promise<boolean>;
 type ValidatorFn<I = any> = (input: I) => I;
@@ -16,7 +16,7 @@ declare class Component<I = any, O = any> {
     private component_id;
     private info_cache?;
     constructor(module: Module<I, O>, component_id: string);
-    run(input: I, opts: ComponentOpts): Promise<O>;
+    run(input: I, opts: ComponentOpts): Promise<O | null>;
     init(input: I, opts: ComponentOpts): Promise<boolean>;
     stop(input: I, opts: ComponentOpts): Promise<boolean>;
     validator(input: I): I;
