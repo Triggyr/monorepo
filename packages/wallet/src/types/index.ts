@@ -2,20 +2,21 @@ import type axios from 'axios';
 
 type ArrayOf<T> = T[];
 
+type Headers = {
+   'x-api-secret'?: string;
+   Authorization?: `Bearer ${string}`;
+   'x-refresh'?: string;
+   [key: string]: axios.AxiosHeaderValue | undefined;
+};
+
 export type TriggyrWalletOptions = {
    apiUrl: string;
    logger?: (v: any) => void;
-   baseHeaders?: {
-      'x-api-secret'?: string;
-      [key: string]: axios.AxiosHeaderValue | undefined;
-   };
+   baseHeaders?: Headers;
 };
 
 type TriggyrWalletBaseApiRequest = {
-   headers?: {
-      'x-api-secret'?: string;
-      [key: string]: axios.AxiosHeaderValue | undefined;
-   };
+   headers?: Headers;
 };
 
 export type TriggyrWalletApiRequest<T = undefined> = T extends undefined

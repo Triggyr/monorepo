@@ -1,29 +1,20 @@
 import TriggyrError from './error.factory';
 import Http from '@triggyr/http';
 import _ from 'lodash';
-import Nft from './modules/nft';
-import Address from './modules/address';
-import Wallet from './modules/wallet';
-import TwoFa from './modules/twoFa';
-import Swap from './modules/swap';
-import Token from './modules/token';
-import type {
-   TriggyrWalletApiRequest,
-   TriggyrWalletBlockchains,
-   TriggyrWalletHealthz,
-   TriggyrWalletOptions,
-} from './types';
+import Component from './modules/component';
+import Workflow from './modules/workflow';
+import Auth from './modules/auth';
+import Job from './modules/job';
+import type { TriggyrCoreApiRequest, TriggyrCoreHealthz, TriggyrCoreOptions } from './types';
 
-export default class TriggyrWallet {
+export default class TriggyrCore {
    public http: Http;
-   public address: Address;
-   public nft: Nft;
-   public swap: Swap;
-   public token: Token;
-   public twoFa: TwoFa;
-   public wallet: Wallet;
+   public component: Component;
+   public workflow: Workflow;
+   public auth: Auth;
+   public job: Job;
 
-   constructor(options: TriggyrWalletOptions) {
+   constructor(options: TriggyrCoreOptions) {
       this.http = new Http(options.apiUrl, {
          logger: options.logger,
          baseHeaders: {
@@ -60,24 +51,14 @@ export default class TriggyrWallet {
          },
       });
 
-      this.address = new Address(this.http);
-      this.nft = new Nft(this.http);
-      this.swap = new Swap(this.http);
-      this.token = new Token(this.http);
-      this.twoFa = new TwoFa(this.http);
-      this.wallet = new Wallet(this.http);
+      this.component = new Component(this.http);
+      this.workflow = new Workflow(this.http);
+      this.auth = new Auth(this.http);
+      this.job = new Job(this.http);
    }
 
-   healthcheck = async (payload?: TriggyrWalletApiRequest): Promise<TriggyrWalletHealthz> => {
+   healthcheck = async (payload?: TriggyrCoreApiRequest): Promise<TriggyrCoreHealthz> => {
       const response = await this.http.instance.get('/healthz', {
-         headers: payload?.headers,
-      });
-
-      return response.data.data;
-   };
-
-   blockchains = async (payload?: TriggyrWalletApiRequest): Promise<TriggyrWalletBlockchains> => {
-      const response = await this.http.instance.get('/supported-blockchains', {
          headers: payload?.headers,
       });
 

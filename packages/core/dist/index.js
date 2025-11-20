@@ -6,20 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const error_factory_1 = __importDefault(require("./error.factory"));
 const http_1 = __importDefault(require("@triggyr/http"));
 const lodash_1 = __importDefault(require("lodash"));
-const nft_1 = __importDefault(require("./modules/nft"));
-const address_1 = __importDefault(require("./modules/address"));
-const wallet_1 = __importDefault(require("./modules/wallet"));
-const twoFa_1 = __importDefault(require("./modules/twoFa"));
-const swap_1 = __importDefault(require("./modules/swap"));
-const token_1 = __importDefault(require("./modules/token"));
-class TriggyrWallet {
+const component_1 = __importDefault(require("./modules/component"));
+const workflow_1 = __importDefault(require("./modules/workflow"));
+const auth_1 = __importDefault(require("./modules/auth"));
+const job_1 = __importDefault(require("./modules/job"));
+class TriggyrCore {
     http;
-    address;
-    nft;
-    swap;
-    token;
-    twoFa;
-    wallet;
+    component;
+    workflow;
+    auth;
+    job;
     constructor(options) {
         this.http = new http_1.default(options.apiUrl, {
             logger: options.logger,
@@ -48,12 +44,10 @@ class TriggyrWallet {
                 },
             },
         });
-        this.address = new address_1.default(this.http);
-        this.nft = new nft_1.default(this.http);
-        this.swap = new swap_1.default(this.http);
-        this.token = new token_1.default(this.http);
-        this.twoFa = new twoFa_1.default(this.http);
-        this.wallet = new wallet_1.default(this.http);
+        this.component = new component_1.default(this.http);
+        this.workflow = new workflow_1.default(this.http);
+        this.auth = new auth_1.default(this.http);
+        this.job = new job_1.default(this.http);
     }
     healthcheck = async (payload) => {
         const response = await this.http.instance.get('/healthz', {
@@ -61,11 +55,5 @@ class TriggyrWallet {
         });
         return response.data.data;
     };
-    blockchains = async (payload) => {
-        const response = await this.http.instance.get('/supported-blockchains', {
-            headers: payload?.headers,
-        });
-        return response.data.data;
-    };
 }
-exports.default = TriggyrWallet;
+exports.default = TriggyrCore;

@@ -1,7 +1,7 @@
 {
-   "name": "@triggyr/wallet",
-   "version": "1.0.2",
-   "description": "Triggyr wallet API sdk",
+   "name": "@triggyr/core",
+   "version": "1.0.0",
+   "description": "Triggyr core API sdk",
    "main": "dist/index.js",
    "types": "dist/index.d.ts",
    "files": [
@@ -16,7 +16,6 @@
    "packageManager": "pnpm@10.14.0",
    "dependencies": {
       "@triggyr/http": "https://gitpkg.vercel.app/Triggyr/monorepo/packages/http?893465f474cadb3389f74ffed9f6d98ccb2c45b1",
-      "@turnkey/crypto": "^2.8.4",
       "axios": "^1.12.2",
       "lodash": "^4.17.21"
    },
