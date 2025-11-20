@@ -60,7 +60,31 @@ class Wallet {
         return decrypted;
     };
     settings = async (payload) => {
-        const response = await this.http.instance.post('/wallet/settings', lodash_1.default.omit(payload, ['enable2FA']), { headers: payload?.headers });
+        const response = await this.http.instance.post('/wallet/settings', lodash_1.default.pick(payload, ['enable2FA']), { headers: payload?.headers });
+        return response.data.data;
+    };
+    sendNative = async (payload) => {
+        const response = await this.http.instance.post('/wallet/send/native', lodash_1.default.pick(payload, ['amount', 'blockchain', 'memo', 'to', 'token']), { headers: payload?.headers });
+        return response.data.data;
+    };
+    sendToken = async (payload) => {
+        const response = await this.http.instance.post('/wallet/send/token', lodash_1.default.pick(payload, ['amount', 'blockchain', 'memo', 'to', 'token', 'token_address']), { headers: payload?.headers });
+        return response.data.data;
+    };
+    sendNFT = async (payload) => {
+        const response = await this.http.instance.post('/wallet/send/nft', lodash_1.default.pick(payload, [
+            'amount',
+            'blockchain',
+            'memo',
+            'to',
+            'token',
+            'nft_address',
+            'token_id',
+        ]), { headers: payload?.headers });
+        return response.data.data;
+    };
+    contractCall = async (payload) => {
+        const response = await this.http.instance.post('/wallet/contract/call', lodash_1.default.pick(payload, ['token', 'unsigned_transaction', 'blockchain']), { headers: payload?.headers });
         return response.data.data;
     };
 }

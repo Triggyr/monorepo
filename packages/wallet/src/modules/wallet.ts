@@ -2,6 +2,11 @@ import { decryptExportBundle, generateP256KeyPair } from '@turnkey/crypto';
 import type Http from '@triggyr/http';
 import _ from 'lodash';
 import type {
+   TriggyrContractCall,
+   TriggyrSendNative,
+   TriggyrSendNFT,
+   TriggyrSendToken,
+   TriggyrTransactionResponse,
    TriggyrWalletApiRequest,
    TriggyrWalletCreateWalletAccount,
    TriggyrWalletExport,
@@ -104,7 +109,63 @@ export default class Wallet {
    ): Promise<TriggyrWalletSettings> => {
       const response = await this.http.instance.post(
          '/wallet/settings',
-         _.omit(payload, ['enable2FA']),
+         _.pick(payload, ['enable2FA']),
+         { headers: payload?.headers },
+      );
+
+      return response.data.data;
+   };
+
+   sendNative = async (
+      payload: TriggyrWalletApiRequest<TriggyrSendNative>,
+   ): Promise<TriggyrTransactionResponse> => {
+      const response = await this.http.instance.post(
+         '/wallet/send/native',
+         _.pick(payload, ['amount', 'blockchain', 'memo', 'to', 'token']),
+         { headers: payload?.headers },
+      );
+
+      return response.data.data;
+   };
+
+   sendToken = async (
+      payload: TriggyrWalletApiRequest<TriggyrSendToken>,
+   ): Promise<TriggyrTransactionResponse> => {
+      const response = await this.http.instance.post(
+         '/wallet/send/token',
+         _.pick(payload, ['amount', 'blockchain', 'memo', 'to', 'token', 'token_address']),
+         { headers: payload?.headers },
+      );
+
+      return response.data.data;
+   };
+
+   sendNFT = async (
+      payload: TriggyrWalletApiRequest<TriggyrSendNFT>,
+   ): Promise<TriggyrTransactionResponse> => {
+      const response = await this.http.instance.post(
+         '/wallet/send/nft',
+         _.pick(payload, [
+            'amount',
+            'blockchain',
+            'memo',
+            'to',
+            'token',
+            'nft_address',
+            'token_id',
+         ]),
+         { headers: payload?.headers },
+      );
+
+      return response.data.data;
+   };
+
+   contractCall = async (
+      payload: TriggyrWalletApiRequest<TriggyrContractCall>,
+   ): Promise<TriggyrTransactionResponse> => {
+      const response = await this.http.instance.post(
+         '/wallet/contract/call',
+         _.pick(payload, ['token', 'unsigned_transaction', 'blockchain']),
          { headers: payload?.headers },
       );
 

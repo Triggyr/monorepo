@@ -8,7 +8,7 @@ import type {
    TriggyrWalletSwapSearch,
    TriggyrWalletSwapQuoteResponse,
    TriggyrWalletSwapPayload,
-   TriggyrWalletSwapExecuteResponse,
+   TriggyrTransactionResponse,
 } from '../types';
 
 export default class Swap {
@@ -35,7 +35,7 @@ export default class Swap {
 
    execute = async (
       payload: TriggyrWalletApiRequest<TriggyrWalletSwapPayload>,
-   ): Promise<TriggyrWalletSwapExecuteResponse> => {
+   ): Promise<TriggyrTransactionResponse> => {
       const response = await this.http.instance.post(
          `/swap/${payload.blockchain}/execute`,
          _.pick(payload, [

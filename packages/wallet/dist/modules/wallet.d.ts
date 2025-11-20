@@ -1,5 +1,5 @@
 import type Http from '@triggyr/http';
-import type { TriggyrWalletApiRequest, TriggyrWalletCreateWalletAccount, TriggyrWalletExport, TriggyrWalletExportResponse, TriggyrWalletList, TriggyrWalletSettings, TriggyrWalletSignRawPayloads, TriggyrWalletSignRawPayloadsResponse, TriggyrWalletSignTransaction, TriggyrWalletSignTransactionResponse } from '../types';
+import type { TriggyrContractCall, TriggyrSendNative, TriggyrSendNFT, TriggyrSendToken, TriggyrTransactionResponse, TriggyrWalletApiRequest, TriggyrWalletCreateWalletAccount, TriggyrWalletExport, TriggyrWalletExportResponse, TriggyrWalletList, TriggyrWalletSettings, TriggyrWalletSignRawPayloads, TriggyrWalletSignRawPayloadsResponse, TriggyrWalletSignTransaction, TriggyrWalletSignTransactionResponse } from '../types';
 export default class Wallet {
     private http;
     constructor(http: Http);
@@ -22,4 +22,8 @@ export default class Wallet {
         private_key: string;
     }) => Promise<string>;
     settings: (payload: TriggyrWalletApiRequest<TriggyrWalletSettings>) => Promise<TriggyrWalletSettings>;
+    sendNative: (payload: TriggyrWalletApiRequest<TriggyrSendNative>) => Promise<TriggyrTransactionResponse>;
+    sendToken: (payload: TriggyrWalletApiRequest<TriggyrSendToken>) => Promise<TriggyrTransactionResponse>;
+    sendNFT: (payload: TriggyrWalletApiRequest<TriggyrSendNFT>) => Promise<TriggyrTransactionResponse>;
+    contractCall: (payload: TriggyrWalletApiRequest<TriggyrContractCall>) => Promise<TriggyrTransactionResponse>;
 }

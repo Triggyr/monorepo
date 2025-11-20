@@ -342,11 +342,50 @@ export type TriggyrWalletSwapQuoteResponse = {
     out_amount: string;
     minimum_out_amount: string;
     slippage: number;
-    price_impact: number;
+    price_impact: number | null;
 };
-export type TriggyrWalletSwapExecuteResponse = {
+export type TriggyrTransactionResponse = {
     hash: string;
-    explorer_url: string | null;
     took: number;
+    block_time: number | null;
+    block_number: number | null;
+    explorer_url: string | null;
+};
+export type TriggyrSendNative = {
+    blockchain: string;
+    to: string;
+    amount: string;
+    token?: string;
+    memo?: string;
+};
+export type TriggyrSendToken = {
+    blockchain: string;
+    token_address: string;
+    to: string;
+    amount: string;
+    token?: string;
+    memo?: string;
+};
+export type TriggyrSendNFT = {
+    blockchain: string;
+    nft_address: string;
+    to: string;
+    /**
+     *
+     * @note for EVM ERC721/1155
+     */
+    token_id?: string;
+    /**
+     *
+     * @note for EVM ERC1155
+     */
+    amount?: string;
+    token?: string;
+    memo?: string;
+};
+export type TriggyrContractCall = {
+    blockchain: string;
+    unsigned_transaction: string;
+    token?: string;
 };
 export {};
