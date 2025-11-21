@@ -14,16 +14,18 @@ export default class Auth {
    magicLink = async (
       payload: TriggyrCoreApiRequest<TriggyrMagicLink>,
    ): Promise<{ link: string } | undefined> => {
-      const response = await this.http.instance.post('/auth', _.pick(payload, ['email']), {
-         headers: payload?.headers,
-      });
+      const response = await this.http.instance.post(
+         '/auth',
+         _.pick(payload, ['email', 'redirect_to']),
+         { headers: payload?.headers },
+      );
 
       return response.data.data;
    };
 
    verifyMagicLink = async (
       payload: TriggyrCoreApiRequest<TriggyrVerifyMagicLink>,
-   ): Promise<TriggyrAuthTokens> => {
+   ): Promise<{ redirect_to?: string; tokens: TriggyrAuthTokens }> => {
       const response = await this.http.instance.post('/auth/verify', _.pick(payload, ['token']), {
          headers: payload?.headers,
       });

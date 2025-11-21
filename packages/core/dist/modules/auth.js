@@ -10,9 +10,7 @@ class Auth {
         this.http = http;
     }
     magicLink = async (payload) => {
-        const response = await this.http.instance.post('/auth', lodash_1.default.pick(payload, ['email']), {
-            headers: payload?.headers,
-        });
+        const response = await this.http.instance.post('/auth', lodash_1.default.pick(payload, ['email', 'redirect_to']), { headers: payload?.headers });
         return response.data.data;
     };
     verifyMagicLink = async (payload) => {

@@ -29,6 +29,7 @@ export type TriggyrCoreHealthz = {
 
 export type TriggyrMagicLink = {
    email: string;
+   redirect_to?: string;
 };
 
 export type TriggyrVerifyMagicLink = {
